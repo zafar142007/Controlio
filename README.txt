@@ -12,3 +12,8 @@ The properties file has commands which are mapped to keyboard shortcuts of diffe
 6. <OS_namex> can be "nix" (*Nix like OSs) or "win" (Windows).
 7. Two different commands can have the same key combinations.
 8. A command can have many key combinations (different OSs), but only one for a particular OS.
+
+Example:
+
+
+previous_tab= VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@win, VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@nix
