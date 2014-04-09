@@ -17,7 +17,7 @@ Example:
 
 previous_tab= VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@win, VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@nix
 
-Licence
+License
 =======
 Apache 2.0
 Copyright 2014, Zafar Ansari
