@@ -1,0 +1,161 @@
+<!-- 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/textView1"
+    android:layout_toLeftOf="@+id/textView1"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/hostPort"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/hostPortText"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/hostIPTextbox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/hostIP"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/sendHi" />
+
+    <ImageButton
+        android:id="@+id/btnSpeak"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/speak"
+        android:src="@android:drawable/ic_btn_speak_now" />
+
+    <TextView
+        android:id="@+id/txtText"
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="0.22"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</LinearLayout>
+-->
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="4"
+    android:orientation="horizontal" 
+	android:layout_gravity="center">
+<EditText
+        android:id="@+id/hostPort"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/hostPortText"
+        android:inputType="number" 	
+		android:layout_columnSpan="4"
+        android:layout_gravity="fill"/>
+        
+    <EditText
+        android:id="@+id/hostIPTextbox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/hostIP"
+        android:inputType="phone" 
+        android:layout_columnSpan="4"
+        android:layout_gravity="fill"
+        />
+
+    <Button
+        android:id="@+id/send"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/sendHi" 
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        />
+
+    <ImageButton
+        android:id="@+id/btnSpeak"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/speak"
+        android:src="@android:drawable/ic_btn_speak_now" 
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        />
+    <Button android:id="@+id/next" android:text="Tab" />
+
+    <Button android:id="@+id/closeTab" android:text="Xtb" />
+
+    <Button android:id="@+id/activeWindows" android:text="AWn" />
+
+    <Button android:id="@+id/newTab" android:text="+Tab" />
+
+    <Button android:id="@+id/previousTab" android:text="PTab" />
+
+    <Button android:id="@+id/nextTab" android:text="NTab" />
+
+    <Button android:id="@+id/pageUp" android:text="PU" />
+
+    <Button android:id="@+id/back" android:text="Bk" />
+
+    <Button android:id="@+id/forward" android:text="FWD" />
+
+    <Button android:id="@+id/up" android:text="UP" />
+
+    <Button android:id="@+id/pageDown" android:text="PD" />
+
+    <!-- <Button
+        android:layout_gravity="fill"
+        android:layout_rowSpan="3"
+        android:text="+" />
+
+    <Button
+        android:layout_columnSpan="2"
+        android:layout_gravity="fill"
+        android:text="0" />
+-->
+    <Button android:id="@+id/reload" android:text="rld" />
+<!--  
+    <Button
+        android:layout_columnSpan="3"
+        android:layout_gravity="fill"
+        android:text="=" />
+-->
+	    <Button android:id="@+id/left" android:text="lft" />
+	    <Button android:id="@+id/down" android:text="dwn" />
+	    <Button android:id="@+id/right" android:text="rgt" />
+	    <Button android:id="@+id/options" android:text="opt" />
+	    <Button android:id="@+id/open" android:text="Enter" 
+	         android:layout_columnSpan="2"
+        	android:layout_gravity="fill"
+        	/>   
+        <Button android:id="@+id/stop" android:text="Space" 
+	         android:layout_columnSpan="2"
+        	android:layout_gravity="fill"
+        	 />   
+        
+</GridLayout>
