@@ -10,7 +10,7 @@ The properties file has commands which are mapped to keyboard shortcuts of diffe
 
 3. Key_code refers to a java.awt.event.KeyEvent constant for a keyboard key. For example, VK_A refers to the 'A' key, VK_ALT refers to the 'ALT' key. More could be found on http://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html/#VK_ENTER
 
-4. A key combination is specified by a pattern in which the keys of the given combination are to be pressed. Each key can be pressed or released. A pattern is a string of english language alphabets a-z. In the order of the appearance of keys in the command, alphabets a,b,c,.. respectively are assigned to presses and releases of the respective keys. For example, for the command Alt+Tab, 'a' refers to pressing of the first key in the combination (Alt), 'b' refers to release of the first key in the combination (Alt), 'c' refers to pressing ofthe second key in the combinaton (Tab), and 'd' refers to the release of the second key in the combination (Tab). Here, if the pattern for the command Alt+Tab is 'acdb' then it means that the Alt key is first pressed (and held), then Tab is pressed (and held), then Tab is released, and finally Alt is released.
+4. A key combination is specified by a pattern in which the keys of the given combination are to be pressed. Each key can be pressed or released. A pattern is a string of english language alphabets a-z. In the order of the appearance of keys in the command, alphabets a,b,c,.. respectively are assigned to presses and releases of the respective keys. For example, for the command Alt+Tab, 'a' refers to pressing of the first key in the combination (Alt), 'b' refers to release of the first key in the combination (Alt), 'c' refers to pressing ofthe second key in the combinaton (Tab), and 'd' refers to the release of the second key in the combination (Tab). Here, if the pattern for the command Alt+Tab is 'acdb' then it means that the Alt key is first pressed (and held), then Tab is pressed (and held), then Tab is released, and finally Alt is released. 
 
 5. A command string <command_x> needs to have underscores in places of spaces, if any.
 
@@ -20,6 +20,7 @@ The properties file has commands which are mapped to keyboard shortcuts of diffe
 
 8. A command can have many key combinations (different OSs), but only one for a particular OS.
 
+9. '%' is the separator for a keys within a single key combination. '@' is a separator between a key combination, its pattern and its OS. ',' is a separator between different key combinations.
 Example:
 
 previous_tab= VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@win, VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@nix
