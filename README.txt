@@ -6,7 +6,7 @@ The server files are in the folder ControlioServer (which is a standalone Eclips
 The properties file has commands which are mapped to keyboard shortcuts of different OSs. It is located in ControlioServer/bin/in/control directory. Basically, there is a Java Robot class on the server which executes commands issued from the app based on the mappings it finds in the properties file. For example, on Windows OS, the command "close window" is mapped to Alt+F4. The properties file has a syntax to add commands, which is as follows:
 1. Each line constitutes a command.
 
-2. Structure of a command is as follows: [command_1] = [Key_code1]%[Key_code2]%...@[pattern]@[OS_name1], [command_2] = [Key_code1]%[Key_code2]%...@[pattern]@[OS_name2], ...
+2. Structure of a command is as follows: [command_1] = [Key_code1]%[Key_code2]%...@[pattern]@[OS_name1], [Key_code1]%[Key_code2]%...@[pattern]@[OS_name2], ...
 
 3. Key_code refers to a java.awt.event.KeyEvent constant for a keyboard key. For example, VK_A refers to the 'A' key, VK_ALT refers to the 'ALT' key. More could be found on http://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html/#VK_ENTER
 
