@@ -20,7 +20,7 @@ The properties file has commands which are mapped to keyboard shortcuts of diffe
 
 8. A command can have many key combinations (different OSs), but only one for a particular OS.
 
-9. '%' is the separator for a keys within a single key combination. '@' is a separator between a key combination, its pattern and its OS. ',' is a separator between different key combinations.
+9. '%' is the separator for keys within a single key combination. '@' is a separator between a key combination, its pattern and its OS (this order must be followed). ',' is a separator between different key combinations.
 Example:
 
 previous_tab= VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@win, VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@nix
