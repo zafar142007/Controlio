@@ -44,7 +44,7 @@ public class Dictionary {
 	{	
 		lookup=new HashMap<String, Command[]>();
 		try{
-			properties.load(Dictionary.class.getResourceAsStream("dictionary.properties"));
+			properties.load(Dictionary.class.getClassLoader().getResourceAsStream("dictionary.properties"));
 			System.out.println("Dictionary: Loaded dictionary from file");
 			loadFromPropertiesFile();
 			System.out.println("Dictionary: loaded into database");
