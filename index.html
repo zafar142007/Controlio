@@ -3,35 +3,50 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
     <title>Controlio by zafar142007</title>
   </head>
 
   <body>
-    <div id="container">
-      <div class="inner">
+    <a id="forkme_banner" href="https://github.com/zafar142007/Controlio">View on GitHub</a>
+    <div class="shell">
 
-        <header>
-          <h1>Controlio</h1>
-          <h2>A remote control Android app that can control your computer via customizable speech/touch input</h2>
-        </header>
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Controlio</h1>
+            <h2>A remote control Android app that can control your computer via customizable speech/touch input</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
 
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/zafar142007/Controlio/raw/master/Controlio_0_7/bin/Controlio_0_6.apk" id="download-zip" class="button"><span>Download Android .apk</span></a>
-          <a href="https://github.com/zafar142007/Controlio/raw/master/Controlio_0_7/ControlioServer_0_7/target/ControlioServer-0.0.1-executable.jar" id="download-tar-gz" class="button"><span>Download server .jar</span></a>
-          <a href="https://github.com/zafar142007/Controlio" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/zafar142007/Controlio/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/zafar142007/Controlio/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
 
-        <hr>
 
-        <section id="main_content">
-          <h3>
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h3>
 <a id="welcome-to-controlio" class="anchor" href="#welcome-to-controlio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to Controlio.</h3>
 
 <p>This is an Android app which communicates with a server on a desktop to issue commands to it by speech or touch input. These commands can be configured in a properties file on the server. The device which hosts this app needs to be on a network to talk to this server. Once started, the app needs the IP address and the port (the port can be configured according to you on the server by a GUI) on which the server is running. </p>
@@ -43,7 +58,7 @@
 <ol>
 <li><p>Each line constitutes a command.</p></li>
 <li><p>Structure of a command is as follows: [command_1] = [Key_code1]%[Key_code2]%...@[pattern]@[OS_name1], [Key_code1]%[Key_code2]%...@[pattern]@[OS_name2], ...</p></li>
-<li><p>Key_code refers to a java.awt.event.KeyEvent constant for a keyboard key. For example, VK_A refers to the 'A' key, VK_ALT refers to the 'ALT' key. More could be found <a href="http://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html/#VK_ENTER">here</a></p></li>
+<li><p>Key_code refers to a java.awt.event.KeyEvent constant for a keyboard key. For example, VK_A refers to the 'A' key, VK_ALT refers to the 'ALT' key. More could be found on <a href="http://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html/#VK_ENTER">http://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html/#VK_ENTER</a></p></li>
 <li><p>A key combination is specified by a pattern in which the keys of the given combination are to be pressed. Each key can be pressed or released. A pattern is a string of english language alphabets a-z. In the order of the appearance of keys in the command, alphabets a,b,c,.. respectively are assigned to presses and releases of the respective keys. For example, for the command Alt+Tab, 'a' refers to pressing of the first key in the combination (Alt), 'b' refers to release of the first key in the combination (Alt), 'c' refers to pressing ofthe second key in the combinaton (Tab), and 'd' refers to the release of the second key in the combination (Tab). Here, if the pattern for the command Alt+Tab is 'acdb' then it means that the Alt key is first pressed (and held), then Tab is pressed (and held), then Tab is released, and finally Alt is released. </p></li>
 <li><p>A command string  needs to have underscores in places of spaces, if any.</p></li>
 <li><p> can be "nix" (*Nix like OSs) or "win" (Windows).</p></li>
@@ -55,15 +70,22 @@
 <p>Example:</p>
 
 <p>previous_tab= VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@win, VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@nix</p>
-        </section>
+      </section>
 
-        <footer>
-          Controlio is maintained by <a href="https://github.com/zafar142007">zafar142007</a><br>
-          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
-        </footer>
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/zafar142007">zafar142007</a> can be found on <a href="https://github.com/zafar142007/Controlio">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
 
-        
-      </div>
     </div>
+
+    
   </body>
 </html>
