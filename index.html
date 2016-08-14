@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Controlio by zafar142007</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Controlio</h1>
+          <h2>A remote control android app that can control your computer via customizable speech/touch input</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/zafar142007/Controlio/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/zafar142007/Controlio/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/zafar142007/Controlio" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h3>
+<a id="welcome-to-controlio" class="anchor" href="#welcome-to-controlio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to Controlio.</h3>
+
+<p>This is an Android app which communicates with a server on a desktop to issue commands to it by speech or touch input. These commands can be configured in a properties file on the server. The device which hosts this app needs to be on a network to talk to this server. Once started, the app needs the IP address and the port (the port can be configured according to you on the server by a GUI) on which the server is running. </p>
+
+<p>The server files are in the folder ControlioServer (which is a standalone Eclipse Java project). Currently the app is built to target Android 4.2.2. You can find the apk file in Controlio/bin directory.</p>
+
+<p>The properties file has commands which are mapped to keyboard shortcuts of different OSs. It is located in ControlioServer/bin/in/control directory. Basically, there is a Java Robot class on the server which executes commands issued from the app based on the mappings it finds in the properties file. For example, on Windows OS, the command "close window" is mapped to Alt+F4. The properties file has a syntax to add commands, which is as follows:</p>
+
+<ol>
+<li><p>Each line constitutes a command.</p></li>
+<li><p>Structure of a command is as follows: [command_1] = [Key_code1]%[Key_code2]%...@[pattern]@[OS_name1], [Key_code1]%[Key_code2]%...@[pattern]@[OS_name2], ...</p></li>
+<li><p>Key_code refers to a java.awt.event.KeyEvent constant for a keyboard key. For example, VK_A refers to the 'A' key, VK_ALT refers to the 'ALT' key. More could be found on <a href="http://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html/#VK_ENTER">http://docs.oracle.com/javase/7/docs/api/java/awt/event/KeyEvent.html/#VK_ENTER</a></p></li>
+<li><p>A key combination is specified by a pattern in which the keys of the given combination are to be pressed. Each key can be pressed or released. A pattern is a string of english language alphabets a-z. In the order of the appearance of keys in the command, alphabets a,b,c,.. respectively are assigned to presses and releases of the respective keys. For example, for the command Alt+Tab, 'a' refers to pressing of the first key in the combination (Alt), 'b' refers to release of the first key in the combination (Alt), 'c' refers to pressing ofthe second key in the combinaton (Tab), and 'd' refers to the release of the second key in the combination (Tab). Here, if the pattern for the command Alt+Tab is 'acdb' then it means that the Alt key is first pressed (and held), then Tab is pressed (and held), then Tab is released, and finally Alt is released. </p></li>
+<li><p>A command string  needs to have underscores in places of spaces, if any.</p></li>
+<li><p> can be "nix" (*Nix like OSs) or "win" (Windows).</p></li>
+<li><p>Two different commands can have the same key combinations.</p></li>
+<li><p>A command can have many key combinations (different OSs), but only one for a particular OS.</p></li>
+<li><p>'%' is the separator for keys within a single key combination. '@' is a separator between a key combination, its pattern and its OS (this order must be followed). ',' is a separator between different key combinations.</p></li>
+</ol>
+
+<p>Example:</p>
+
+<p>previous_tab= VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@win, VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@nix</p>
+        </section>
+
+        <footer>
+          Controlio is maintained by <a href="https://github.com/zafar142007">zafar142007</a><br>
+          This page was generated by <a href="https://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
