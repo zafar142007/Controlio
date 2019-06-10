@@ -43,7 +43,7 @@ public class Networker implements Runnable {
 	}
 	public String sanitize(String string)
 	{
-		return string.replace(' ', '_');
+		return string.toLowerCase().replace(' ', '_');
 	}
 
 	public Command interpret(String command) throws CommandNotFoundException
