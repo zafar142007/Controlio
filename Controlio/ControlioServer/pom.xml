@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.zafar.controlio</groupId>
 	<artifactId>ControlioServer</artifactId>
-	<version>0.0.1</version>
+	<version>1.1</version>
 	<name>Controlio</name>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
