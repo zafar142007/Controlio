@@ -1,10 +1,5 @@
 package in.server;
-import in.control.Command;
-import in.control.CommandNotFoundException;
-import in.control.ControlScreen;
-import in.control.Dictionary;
 
-import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
@@ -13,14 +8,7 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,209 +16,164 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class ControlioServer {
-	private int PORT=8079;
-	private SystemTray tray;
-	private PopupMenu popup;
-	private JPanel panel;
-	private final MenuItem settingsMenu= new MenuItem("Settings");
-	private final MenuItem ipMenu=new MenuItem("Get IP of this machine");
-	private final MenuItem portMenu=new MenuItem("Set port");
-	private final MenuItem exitMenu=new MenuItem("Exit");
-	private JTextField textField;
-	private JLabel label,error;
-	private  JFrame alert;
-	private  JButton button;
-	private Image image;
-	private TrayIcon trayIcon;
-	
-	Thread master=null;
-	Networker worker; 
-	public int getPort()
-	{
-		return PORT;
-	}
-	public void setPort(int port)
-	{
-		this.PORT=port;
-		this.master.interrupt();
-		worker=new Networker();
-	//	worker.setRemote(remote);
-		worker.setPort(port);
-		this.master=new Thread(worker);
-		this.master.start();
-	}
-	class MyListener implements ActionListener
-	{
 
-		public void actionPerformed(ActionEvent e) {
-			if(e.getSource().equals(settingsMenu))
-			{
+  private int PORT = 8079;
+  private SystemTray tray;
+  private PopupMenu popup;
+  private JPanel panel;
+  private final MenuItem settingsMenu = new MenuItem("Settings");
+  private final MenuItem ipMenu = new MenuItem("Get IP of this machine");
+  private final MenuItem portMenu = new MenuItem("Set port");
+  private final MenuItem exitMenu = new MenuItem("Exit");
+  private JTextField textField;
+  private JLabel label, error;
+  private JFrame alert;
+  private JButton button;
+  private Image image;
+  private TrayIcon trayIcon;
 
-			}
-			// execute default action of the application
-			if(e.getSource().equals(exitMenu))
-			{
-				System.out.println("Server: Exiting");
-				System.exit(0);
-			}
-			if(e.getSource().equals(portMenu))
-			{
-				System.out.println("Server: Context port menu clicked");
-				button=new JButton("Set");
-				textField=new JTextField(6);
-				label=new JLabel("Port:");
-				error=new JLabel("");
-				alert=new JFrame();
-				//alert.setLayout(new )
-				alert.setSize(200, 110);
-				alert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				alert.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/2-200, Toolkit.getDefaultToolkit().getScreenSize().height/2-110);
-				alert.setTitle("Set port");
-				panel=new JPanel();
-				//panel.setLayout(new BorderLayout());
-				try{
-					panel.add(label);
-					panel.add(textField);
-					panel.add(button);
-					panel.add(error);
-					alert.add(panel);
-				}catch(Exception ex)
-				{
-					ex.printStackTrace();
-				}
-				button.addActionListener(listener);
-				alert.setVisible(true);
-			}
-			if(e.getSource().equals(button))
-			{
-				System.out.println("Button: I was pressed");
-				try
-				{
-					String text=textField.getText();
-					if(text.matches("[^0-9]*"))
-					{
-						System.out.println("Server: bad port");
-						error.setText("Only numbers are allowed!");
-					}else
-						if(!textField.getText().equals(""))
-						{
-							System.out.println("Server: port set");
-							error.setText("Success.");
-							setPort(Integer.parseInt(textField.getText()));
-						}
-				}
-				catch(Exception ex)
-				{
-					ex.printStackTrace();
-				}
-			}if(e.getSource().equals(ipMenu))
-			{
-				alert=new JFrame();
-				alert.setSize(200, 70);
-				alert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				alert.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/2-200, Toolkit.getDefaultToolkit().getScreenSize().height/2-70);
-				alert.setTitle("IP address");
-				try{
-					alert.add(new JLabel(InetAddress.getLocalHost().getHostAddress()));
-				}catch(Exception ex)
-				{
-					ex.printStackTrace();
-				}
-				alert.setVisible(true);
-			}
-			// ...
-		}
+  Thread master = null;
+  Networker worker;
 
-		
-	}
-	MyListener listener=new MyListener();
-		public static void main(String args[]) {
+  public int getPort() {
+    return PORT;
+  }
 
-		ControlioServer server=new ControlioServer();
-		
-		if (SystemTray.isSupported()) {
-			// get the SystemTray instance
-			server.tray = SystemTray.getSystemTray();
-			// load an image
-			
-			server.image = Toolkit.getDefaultToolkit().getImage("icon.png").getScaledInstance(20, 20, Image.SCALE_SMOOTH);
-			// create a action listener to listen for default action executed on the tray icon
-			// create a popup menu
-			server.popup = new PopupMenu();
-			// create menu exitMenu for the default action
-			server.ipMenu.addActionListener(server.listener);
-			server.popup.add(server.ipMenu);
-			server.portMenu.addActionListener(server.listener);
-			server.popup.add(server.portMenu);
-			server.settingsMenu.addActionListener(server.listener);
+  public void setPort(int port) {
+    this.PORT = port;
+    this.master.interrupt();
+    worker = new Networker();
+    //	worker.setRemote(remote);
+    worker.setPort(port);
+    this.master = new Thread(worker);
+    this.master.start();
+  }
+
+  class MyListener implements ActionListener {
+
+    public void actionPerformed(ActionEvent e) {
+      if (e.getSource().equals(settingsMenu)) {
+
+      }
+      // execute default action of the application
+      if (e.getSource().equals(exitMenu)) {
+        System.out.println("Server: Exiting");
+        System.exit(0);
+      }
+      if (e.getSource().equals(portMenu)) {
+        System.out.println("Server: Context port menu clicked");
+        button = new JButton("Set");
+        textField = new JTextField(6);
+        label = new JLabel("Port:");
+        error = new JLabel("");
+        alert = new JFrame();
+        //alert.setLayout(new )
+        alert.setSize(200, 110);
+        alert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        alert.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 200,
+            Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 110);
+        alert.setTitle("Set port");
+        panel = new JPanel();
+        //panel.setLayout(new BorderLayout());
+        try {
+          panel.add(label);
+          panel.add(textField);
+          panel.add(button);
+          panel.add(error);
+          alert.add(panel);
+        } catch (Exception ex) {
+          ex.printStackTrace();
+        }
+        button.addActionListener(listener);
+        alert.setVisible(true);
+      }
+      if (e.getSource().equals(button)) {
+        System.out.println("Button: I was pressed");
+        try {
+          String text = textField.getText();
+          if (text.matches("[^0-9]*")) {
+            System.out.println("Server: bad port");
+            error.setText("Only numbers are allowed!");
+          } else if (!textField.getText().equals("")) {
+            System.out.println("Server: port set");
+            error.setText("Success.");
+            setPort(Integer.parseInt(textField.getText()));
+          }
+        } catch (Exception ex) {
+          ex.printStackTrace();
+        }
+      }
+      if (e.getSource().equals(ipMenu)) {
+        alert = new JFrame();
+        alert.setSize(200, 70);
+        alert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        alert.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 200,
+            Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 70);
+        alert.setTitle("IP address");
+        try {
+          alert.add(new JLabel(InetAddress.getLocalHost().getHostAddress()));
+        } catch (Exception ex) {
+          ex.printStackTrace();
+        }
+        alert.setVisible(true);
+      }
+      // ...
+    }
+
+
+  }
+
+  MyListener listener = new MyListener();
+
+  public static void main(String args[]) {
+
+    ControlioServer server = new ControlioServer();
+
+    if (SystemTray.isSupported()) {
+      // get the SystemTray instance
+      server.tray = SystemTray.getSystemTray();
+      // load an image
+
+      server.image = Toolkit.getDefaultToolkit().getImage("icon.png")
+          .getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+      // create a action listener to listen for default action executed on the tray icon
+      // create a popup menu
+      server.popup = new PopupMenu();
+      // create menu exitMenu for the default action
+      server.ipMenu.addActionListener(server.listener);
+      server.popup.add(server.ipMenu);
+      server.portMenu.addActionListener(server.listener);
+      server.popup.add(server.portMenu);
+      server.settingsMenu.addActionListener(server.listener);
 //			server.popup.add(server.settingsMenu);
-//			server.exitMenu.addActionListener(server.listener);
-			server.popup.add(server.exitMenu);
-			try{
-				server.trayIcon = new TrayIcon(server.image, "Controlio", server.popup);
-				//System.out.println(server.trayIcon==null);
-				server.trayIcon.addActionListener(server.listener);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			
-			// add the tray image
-			try {
-				server.tray.add(server.trayIcon);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			// ...
-		} else {
-			// disable tray option in your application or
-			// perform other actions
+			server.exitMenu.addActionListener(server.listener);
+      server.popup.add(server.exitMenu);
+      try {
+        server.trayIcon = new TrayIcon(server.image, "Controlio", server.popup);
+        //System.out.println(server.trayIcon==null);
+        server.trayIcon.addActionListener(server.listener);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
 
-		}
+      // add the tray image
+      try {
+        server.tray.add(server.trayIcon);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      // ...
+    } else {
+      // disable tray option in your application or
+      // perform other actions
 
-		server.worker=new Networker();
-	//	server.worker.setRemote(server.remote);
-		server.master=new Thread(server.worker);
-		
-		server.master.start();
-		
+    }
 
-	//	try {
-		//	ServerSocket serverSocket = new ServerSocket(server.PORT);
-		//  Socket clientSocket=null;
-	//		while(true)
-	//		{
-				//clientSocket = serverSocket.accept();
-				
-				//System.out.println("Server: Accepted socket.");
-				//BufferedReader in = new BufferedReader(new InputStreamReader(
-				//		clientSocket.getInputStream()));
-				//PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),
-				//		true);
-				//String input = null;
-				//while ((input = in.readLine()) != null) {
-				//	System.out.println("Client: "+input);
-//					try{
-//
-//						server.remote.execute(server.interpret(input));
-//					}
-//					catch(CommandNotFoundException e)
-//					{
-//						System.out.println("Server: Invalid command: "+e);
-//					}
-//
-//					clientSocket.close();
-//					break;
-				}
-	//		}
-	//	} 
-	//	catch (IOException e) {
-	//		e.printStackTrace();
-	//	}
-	//	finally {
+    server.worker = new Networker();
+    //	server.worker.setRemote(server.remote);
+    server.master = new Thread(server.worker);
 
-	//	}
-	//}
+    server.master.start();
 
+  }
 }

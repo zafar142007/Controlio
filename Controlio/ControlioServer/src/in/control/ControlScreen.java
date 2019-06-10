@@ -53,9 +53,7 @@ public class ControlScreen {
         }
       }
       System.out.println("Robot: I have executed command");
-      if (sequence.length % 2 != 0) {
-        unpressKeys(unpressedKeys);
-      }
+      unpressKeys(unpressedKeys);
       return true;
     } catch (Exception e) {
       e.printStackTrace();
@@ -65,7 +63,6 @@ public class ControlScreen {
   }
 
   public void unpressKeys(Set<Field> unpressedKeys) {
-    //odd number of strokes
     //unpress keys that are still pressed
     for (Field key : unpressedKeys) {
       unpressPool.submit(
@@ -80,22 +77,4 @@ public class ControlScreen {
           });
     }
   }
-//	public static void main(String args[])
-//	{	
-//		ControlScreen trial=new ControlScreen();
-//		trial.execute(new Command(new String[] {"VK_ALT","VK_TAB"},new char[] {'a','c','d','b'}));
-////		Class clazz=KeyEvent.class;
-////		Field field;
-////		String f="VK_A";
-////		try{
-////			field=clazz.getField(f);
-////			System.out.println((int)field.get(null));
-////		}catch(Exception e)
-////		{	e.printStackTrace();}
-////		//trial.pressKeysInSequence(KeyEvent.VK_A);
-//		//trial.pressKeysInSequence(KeyEvent.VK_ALT, KeyEvent.VK_TAB);
-//		//trial.pressKeysInOrder(KeyEvent.VK_ALT, KeyEvent.VK_TAB, KeyEvent.VK_TAB);
-//		//trial.pressKeysInSequence(KeyEvent.VK_CONTROL, KeyEvent.VK_PAGE_UP);
-//		//trial.pressKeysInSequence(KeyEvent.VK_CONTROL, KeyEvent.VK_ALT, KeyEvent.VK_DELETE);
-//	}
 }
