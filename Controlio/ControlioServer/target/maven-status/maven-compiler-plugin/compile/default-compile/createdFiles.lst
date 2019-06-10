@@ -1,0 +1,8 @@
+in/control/Dictionary.class
+in/control/Command.class
+in/control/CommandNotFoundException.class
+in/server/ControlioServer.class
+in/control/ControlScreen.class
+in/control/Platform.class
+in/server/Networker.class
+in/server/ControlioServer$MyListener.class
