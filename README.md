@@ -14,7 +14,7 @@ The properties file has commands which are mapped to keyboard shortcuts of diffe
 
 5. A command string <command_x> needs to have underscores in places of spaces, if any.
 
-6. <OS_namex> can be "nix" (*Nix like OSs) or "win" (Windows).
+6. <OS_namex> can be "nix" (*Nix like OSs) or "win" (Windows) or "osx" (Mac OSX).
 
 7. Two different commands can have the same key combinations.
 
