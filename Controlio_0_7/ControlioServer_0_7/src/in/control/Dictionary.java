@@ -32,6 +32,8 @@ public class Dictionary {
 					commands[j].setPlatform(Platform.nix);
 				else if(atoms[2].equals("win"))
 					commands[j].setPlatform(Platform.win);
+				else if(atoms[2].equals("osx"))
+					commands[j].setPlatform(Platform.osx);
 				j++;
 			}			
 			System.out.println("Dictionary: Putting in "+commands[0].getInstructions()[0]+" "+commands[1].getInstructions()[0]);

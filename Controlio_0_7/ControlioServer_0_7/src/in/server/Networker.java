@@ -54,21 +54,27 @@ public class Networker implements Runnable {
 		if(System.getProperty("os.name").toLowerCase().indexOf("win")>=0)
 		{
 			for(int i=0;i<commands.length;i++)
-				if(commands[i].getPlatform().toString().equals("win"))				
+				if(commands[i].getPlatform().toString().equals("win"))
 					return commands[i];
 		}
 		else
-			if(System.getProperty("os.name").toLowerCase().indexOf("nux")>=0)
-			{
-				for(int i=0;i<commands.length;i++)
-					if(commands[i].getPlatform().toString().equals("nix"))				
-						return commands[i];					
-			}
+		if(System.getProperty("os.name").toLowerCase().indexOf("nux")>=0)
+		{
+			for(int i=0;i<commands.length;i++)
+				if(commands[i].getPlatform().toString().equals("nix"))
+					return commands[i];
+		}
+		else
+		if(System.getProperty("os.name").toLowerCase().indexOf("mac")>=0)
+		{
+			for(int i=0;i<commands.length;i++)
+				if(commands[i].getPlatform().toString().equals("osx"))
+					return commands[i];
+		}
 
 		return null;
 
 	}
-
 
 	public void run() {
 
