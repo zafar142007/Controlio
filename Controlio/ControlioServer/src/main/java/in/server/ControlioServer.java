@@ -9,6 +9,8 @@ import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +19,7 @@ import javax.swing.JTextField;
 
 public class ControlioServer {
 
+  private String ip;
   private int PORT = 8079;
   private SystemTray tray;
   private PopupMenu popup;
@@ -47,6 +50,14 @@ public class ControlioServer {
     worker.setPort(port);
     this.master = new Thread(worker);
     this.master.start();
+  }
+
+  public ControlioServer() {
+    try {
+      ip = InetAddress.getLocalHost().getHostAddress();
+    } catch (UnknownHostException e) {
+      e.printStackTrace();
+    }
   }
 
   class MyListener implements ActionListener {
@@ -86,6 +97,7 @@ public class ControlioServer {
         }
         button.addActionListener(listener);
         alert.setVisible(true);
+        alert.setAutoRequestFocus(true);
       }
       if (e.getSource().equals(button)) {
         System.out.println("Button: I was pressed");
@@ -110,14 +122,10 @@ public class ControlioServer {
         alert.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 200,
             Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 70);
         alert.setTitle("IP address");
-        try {
-          alert.add(new JLabel(InetAddress.getLocalHost().getHostAddress()));
-        } catch (Exception ex) {
-          ex.printStackTrace();
-        }
+        alert.add(new JLabel(ip));
+        alert.setAutoRequestFocus(true);
         alert.setVisible(true);
       }
-      // ...
     }
 
 
@@ -133,9 +141,13 @@ public class ControlioServer {
       // get the SystemTray instance
       server.tray = SystemTray.getSystemTray();
       // load an image
-
-      server.image = Toolkit.getDefaultToolkit().getImage("icon.png")
-          .getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+      try {
+        server.image = ImageIO
+            .read(ControlioServer.class.getClassLoader().getResourceAsStream("icon.png"))
+            .getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
       // create a action listener to listen for default action executed on the tray icon
       // create a popup menu
       server.popup = new PopupMenu();
@@ -146,7 +158,7 @@ public class ControlioServer {
       server.popup.add(server.portMenu);
       server.settingsMenu.addActionListener(server.listener);
 //			server.popup.add(server.settingsMenu);
-			server.exitMenu.addActionListener(server.listener);
+      server.exitMenu.addActionListener(server.listener);
       server.popup.add(server.exitMenu);
       try {
         server.trayIcon = new TrayIcon(server.image, "Controlio", server.popup);
