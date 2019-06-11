@@ -2,7 +2,7 @@ Controlio
 =========
 
 This is an Android app which communicates with a server on a desktop to issue commands to it by speech or touch input. These commands can be configured in a properties file on the server. The device which hosts this app needs to be on a network to talk to this server. Once started, the app needs the IP address and the port (the port can be configured according to you on the server by a GUI) on which the server is running. 
-The server files are in the folder ControlioServer (which is a standalone Eclipse Java project). Currently the app is built to target Android 4.2.2, but can run on newer Android versions (tested till 7.0). You can find the apk file in Controlio/bin directory.
+The server files are in the folder ControlioServer (which is a standalone Eclipse Java project). The app is tested till Android 7.0. You can find the apk file in Controlio/Controlio/app/build/outputs/apk/release/app-release-unsigned.apk directory.
 The properties file has commands which are mapped to keyboard shortcuts of different OSs. It is located in ControlioServer/bin/in/control directory. Basically, there is a Java Robot class on the server which executes commands issued from the app based on the mappings it finds in the properties file. For example, on Windows OS, the command "close window" is mapped to Alt+F4. The properties file has a syntax to add commands, which is as follows:
 1. Each line constitutes a command.
 
