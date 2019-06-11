@@ -96,6 +96,7 @@ public class Networker implements Runnable {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
+    alert.setAutoRequestFocus(true);
     alert.setVisible(true);
   }
 
