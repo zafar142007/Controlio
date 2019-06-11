@@ -44,16 +44,15 @@ public class Networker implements Runnable {
 
   public void setRemote(ControlScreen remote) {
     this.remote = remote;
-
   }
 
   public String sanitize(String string) {
-    return string.toLowerCase().replace(' ', '_');
+    return string.trim().toLowerCase().replace(' ', '_');
   }
 
   public Command interpret(String command) throws CommandNotFoundException {
     Command[] commands = null;
-    if (isTest(command)) {
+    if (isTest(sanitize(command))) {
       showTestStatus();
     } else {
       commands = dictionary.getCommands(sanitize(command));
@@ -82,12 +81,12 @@ public class Networker implements Runnable {
   }
 
   private boolean isTest(String command) {
-    return command.toLowerCase().equals(ControlioConstants.TEST_COMMAND);
+    return command.equals(ControlioConstants.TEST_COMMAND.toLowerCase());
   }
 
   private void showTestStatus() {
     JFrame alert = new JFrame();
-    alert.setSize(200, 70);
+    alert.setSize(300, 70);
     alert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     alert.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 200,
         Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 70);

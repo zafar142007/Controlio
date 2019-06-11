@@ -1,3 +1,4 @@
+in/server/util/ControlioConstants.class
 in/control/Dictionary.class
 in/control/Command.class
 in/control/CommandNotFoundException.class

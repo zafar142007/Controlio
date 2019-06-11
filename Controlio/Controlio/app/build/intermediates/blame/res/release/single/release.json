@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/res/merged/release/drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/drawable-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/res/merged/release/drawable-mdpi_ic_launcher.png.flat",
+        "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/drawable-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/res/merged/release/drawable-xhdpi_ic_launcher.png.flat",
+        "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/res/merged/release/layout_activity_main.xml.flat",
+        "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/res/merged/release/menu_main.xml.flat",
+        "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/menu/main.xml"
+    },
+    {
+        "merged": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/res/merged/release/drawable-hdpi_ic_launcher.png.flat",
+        "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/drawable-hdpi/ic_launcher.png"
+    }
+]

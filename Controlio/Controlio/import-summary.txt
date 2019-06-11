@@ -1,0 +1,125 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gradle/
+* .gradle/4.1/
+* .gradle/4.1/fileChanges/
+* .gradle/4.1/fileChanges/last-build.bin
+* .gradle/4.1/fileHashes/
+* .gradle/4.1/fileHashes/fileHashes.bin
+* .gradle/4.1/fileHashes/fileHashes.lock
+* .gradle/buildOutputCleanup/
+* .gradle/buildOutputCleanup/built.bin
+* .gradle/buildOutputCleanup/cache.properties
+* .gradle/buildOutputCleanup/cache.properties.lock
+* .idea/
+* .idea/Controlio.iml
+* .idea/misc.xml
+* .idea/modules.xml
+* .idea/workspace.xml
+* ControlioServer/
+* ControlioServer/.classpath
+* ControlioServer/.project
+* ControlioServer/.settings/
+* ControlioServer/.settings/org.eclipse.jdt.core.prefs
+* ControlioServer/ControlioServer.iml
+* ControlioServer/bin/
+* ControlioServer/bin/in/
+* ControlioServer/bin/in/control/
+* ControlioServer/bin/in/control/Command.class
+* ControlioServer/bin/in/control/CommandNotFoundException.class
+* ControlioServer/bin/in/control/ControlScreen.class
+* ControlioServer/bin/in/control/Dictionary.class
+* ControlioServer/bin/in/control/Platform.class
+* ControlioServer/bin/in/control/dictionary.properties
+* ControlioServer/bin/in/server/
+* ControlioServer/bin/in/server/ControlioServer$MyListener.class
+* ControlioServer/bin/in/server/ControlioServer.class
+* ControlioServer/bin/in/server/Networker.class
+* ControlioServer/icon.png
+* ControlioServer/pom.xml
+* ControlioServer/res/
+* ControlioServer/res/dictionary.properties
+* ControlioServer/src/
+* ControlioServer/src/in/
+* ControlioServer/src/in/control/
+* ControlioServer/src/in/control/Command.java
+* ControlioServer/src/in/control/CommandNotFoundException.java
+* ControlioServer/src/in/control/ControlScreen.java
+* ControlioServer/src/in/control/Dictionary.java
+* ControlioServer/src/in/control/Platform.java
+* ControlioServer/src/in/server/
+* ControlioServer/src/in/server/ControlioServer.java
+* ControlioServer/src/in/server/Networker.java
+* ControlioServer/src/in/server/util/
+* ControlioServer/src/in/server/util/ControlioConstants.java
+* ControlioServer/target/
+* ControlioServer/target/ControlioServer-1.1-executable.jar
+* ControlioServer/target/ControlioServer-1.1.jar
+* ControlioServer/target/classes/
+* ControlioServer/target/classes/dictionary.properties
+* ControlioServer/target/classes/in/
+* ControlioServer/target/classes/in/control/
+* ControlioServer/target/classes/in/control/Command.class
+* ControlioServer/target/classes/in/control/CommandNotFoundException.class
+* ControlioServer/target/classes/in/control/ControlScreen.class
+* ControlioServer/target/classes/in/control/Dictionary.class
+* ControlioServer/target/classes/in/control/Platform.class
+* ControlioServer/target/classes/in/server/
+* ControlioServer/target/classes/in/server/ControlioServer$MyListener.class
+* ControlioServer/target/classes/in/server/ControlioServer.class
+* ControlioServer/target/classes/in/server/Networker.class
+* ControlioServer/target/classes/in/server/util/
+* ControlioServer/target/classes/in/server/util/ControlioConstants.class
+* ControlioServer/target/maven-archiver/
+* ControlioServer/target/maven-archiver/pom.properties
+* ControlioServer/target/maven-status/
+* ControlioServer/target/maven-status/maven-compiler-plugin/
+* ControlioServer/target/maven-status/maven-compiler-plugin/compile/
+* ControlioServer/target/maven-status/maven-compiler-plugin/compile/default-compile/
+* ControlioServer/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+* ControlioServer/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+* ic_launcher-web.png
+* proguard-project.txt
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+android-support-v4.jar => com.android.support:support-v4:18.0.0
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app/src/main/AndroidManifest.xml
+* res/ => app/src/main/res/
+* src/ => app/src/main/java/
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

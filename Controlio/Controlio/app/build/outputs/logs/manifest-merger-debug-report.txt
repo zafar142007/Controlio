@@ -1,0 +1,82 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:2:1-31:12
+MERGED from [com.android.support:support-v4:21.0.3] /Users/zaa0000/.gradle/caches/transforms-2/files-2.1/82a9863e9151110d1a234d4025c26b2f/AndroidManifest.xml:14:4-17:12
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:2:1-31:12
+	package
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:3:5-27
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:5:5-30
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:4:5-28
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+uses-sdk
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:7:5-17
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:7:5-17
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:7:5-17
+MERGED from [com.android.support:support-v4:21.0.3] /Users/zaa0000/.gradle/caches/transforms-2/files-2.1/82a9863e9151110d1a234d4025c26b2f/AndroidManifest.xml:15:5-42
+MERGED from [com.android.support:support-v4:21.0.3] /Users/zaa0000/.gradle/caches/transforms-2/files-2.1/82a9863e9151110d1a234d4025c26b2f/AndroidManifest.xml:15:5-42
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:7:5-17
+INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:7:5-17
+	android:targetSdkVersion
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:7:5-17
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:7:5-17
+		INJECTED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:8:2-63
+	android:name
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:8:19-61
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:9:2-75
+	android:name
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:9:19-73
+application
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:11:2-29:19
+MERGED from [com.android.support:support-v4:21.0.3] /Users/zaa0000/.gradle/caches/transforms-2/files-2.1/82a9863e9151110d1a234d4025c26b2f/AndroidManifest.xml:16:5-19
+MERGED from [com.android.support:support-v4:21.0.3] /Users/zaa0000/.gradle/caches/transforms-2/files-2.1/82a9863e9151110d1a234d4025c26b2f/AndroidManifest.xml:16:5-19
+	android:label
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:14:9-42
+	android:icon
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:13:9-45
+	android:allowBackup
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:12:9-35
+	android:theme
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:15:9-40
+activity#in.controlio.MainActivity
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:16:9-24:20
+	android:label
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:18:13-46
+	android:name
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:17:13-53
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:19:13-23:29
+action#android.intent.action.MAIN
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:20:17-69
+	android:name
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:22:17-77
+	android:name
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:22:27-74
+service#in.controlio.NetworkService
+ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:25:9-27:39
+	android:exported
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from /Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/AndroidManifest.xml:26:13-55

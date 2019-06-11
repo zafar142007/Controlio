@@ -30,36 +30,39 @@ public class ControlScreen {
   }
 
   public boolean execute(Command command) {
-    System.out.println("Robot: I am going to execute command");
-    char[] sequence = command.getSequence();
-    String[] instructions = command.getInstructions();
-    int order = 0;
-    Class clazz = KeyEvent.class;
-    Field field;
-    Set<Field> unpressedKeys = new HashSet<>();
-    try {
-      for (int i = 0; i < sequence.length; i++) {
-        order = ((char) (sequence[i]) - (char) ('a'));
-        String f = instructions[order / 2];
-        field = clazz.getField(f);
-        if (order % 2 == 0) {
-          //System.out.println("Printing"+field.get(null));
-          control.keyPress((int) field.get(null));//press "KeyEvent."+instructions[(order/2)]
-          unpressedKeys.add(field);
-        } else {
-          //System.out.println("Printing"+field.get(null));
-          control.keyRelease((int) field.get(null));//press "KeyEvent."+instructions[(order/2)]
-          unpressedKeys.remove(field);
+    if(command!=null) {
+      System.out.println("Robot: I am going to execute command");
+      char[] sequence = command.getSequence();
+      String[] instructions = command.getInstructions();
+      int order = 0;
+      Class clazz = KeyEvent.class;
+      Field field;
+      Set<Field> unpressedKeys = new HashSet<>();
+      try {
+        for (int i = 0; i < sequence.length; i++) {
+          order = ((char) (sequence[i]) - (char) ('a'));
+          String f = instructions[order / 2];
+          field = clazz.getField(f);
+          if (order % 2 == 0) {
+            //System.out.println("Printing"+field.get(null));
+            control.keyPress((int) field.get(null));//press "KeyEvent."+instructions[(order/2)]
+            unpressedKeys.add(field);
+          } else {
+            //System.out.println("Printing"+field.get(null));
+            control.keyRelease((int) field.get(null));//press "KeyEvent."+instructions[(order/2)]
+            unpressedKeys.remove(field);
+          }
         }
+        System.out.println("Robot: I have executed command");
+        unpressKeys(unpressedKeys);
+        return true;
+      } catch (Exception e) {
+        e.printStackTrace();
+        return false;
       }
-      System.out.println("Robot: I have executed command");
-      unpressKeys(unpressedKeys);
-      return true;
-    } catch (Exception e) {
-      e.printStackTrace();
+    }else{
       return false;
     }
-
   }
 
   public void unpressKeys(Set<Field> unpressedKeys) {

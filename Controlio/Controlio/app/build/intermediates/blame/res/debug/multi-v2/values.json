@@ -1,0 +1,62 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/values/dimens.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "89,147",
+                        "endColumns": "57,55",
+                        "endOffsets": "142,198"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,113",
+                        "endColumns": "57,55",
+                        "endOffsets": "108,164"
+                    }
+                },
+                {
+                    "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,3",
+                        "startColumns": "4,4,1,1,1,4",
+                        "startOffsets": "96,149,194,243,300,56",
+                        "endColumns": "52,47,48,56,36,39",
+                        "endOffsets": "144,192,241,298,335,91"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "169,222,270,322,382,422",
+                        "endColumns": "52,47,51,59,39,39",
+                        "endOffsets": "217,265,317,377,417,457"
+                    }
+                },
+                {
+                    "source": "/Users/zaa0000/AndroidStudioProjects/Controlio/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "6,15",
+                        "startColumns": "4,4",
+                        "startOffsets": "186,510",
+                        "endLines": "12,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "472,665"
+                    },
+                    "to": {
+                        "startLines": "10,17",
+                        "startColumns": "4,4",
+                        "startOffsets": "462,753",
+                        "endLines": "16,19",
+                        "endColumns": "12,12",
+                        "endOffsets": "748,908"
+                    }
+                }
+            ]
+        }
+    ]
+}
