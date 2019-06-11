@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="27"
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="24"
     build-mode="FULL"
-    density="420dpi"
+    density="xxhdpi"
     format="10"
     plugin-version="3.4.1"
-    timestamp="1560272316758"
-    token="-3485659724077810105"
+    timestamp="1560275242283"
+    token="620067763456123406"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
@@ -24,87 +24,81 @@
         duration="0" />
 
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/resources/instant-run/debug/resources-debug.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+        location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
         type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1560272316758"
+        timestamp="1560275242283"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/resources/instant-run/debug/resources-debug.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/zaa0000/AndroidStudioProjects/Controlio/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
+            location="/Users/zaa0000/personal/projects/Controlio/Controlio/Controlio/app/build/intermediates/instant-run-apk/debug/app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
 
