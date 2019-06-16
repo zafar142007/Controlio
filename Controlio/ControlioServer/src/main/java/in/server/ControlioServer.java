@@ -36,7 +36,7 @@ public class ControlioServer {
   private TrayIcon trayIcon;
 
   Thread master = null;
-  Networker worker;
+  Networker networker;
 
   public int getPort() {
     return PORT;
@@ -45,10 +45,10 @@ public class ControlioServer {
   public void setPort(int port) {
     this.PORT = port;
     this.master.interrupt();
-    worker = new Networker();
-    //	worker.setRemote(remote);
-    worker.setPort(port);
-    this.master = new Thread(worker);
+    networker = new Networker();
+    //	networker.setRemote(remote);
+    networker.setPort(port);
+    this.master = new Thread(networker);
     this.master.start();
   }
 
@@ -181,9 +181,9 @@ public class ControlioServer {
 
     }
 
-    server.worker = new Networker();
-    //	server.worker.setRemote(server.remote);
-    server.master = new Thread(server.worker);
+    server.networker = new Networker();
+    //	server.networker.setRemote(server.remote);
+    server.master = new Thread(server.networker);
 
     server.master.start();
 

@@ -6,6 +6,7 @@ import in.control.ControlScreen;
 import in.control.Dictionary;
 import in.server.util.ControlioConstants;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
@@ -101,17 +102,16 @@ public class Networker implements Runnable {
   }
 
 
-
   public void run() {
 
     try {
-      InetSocketAddress serverSocket;
       int bytes = 0;
-      channel = ServerSocketChannel.open();
-      serverSocket = new InetSocketAddress(InetAddress.getLocalHost(), port);
-      channel.bind(serverSocket);
+      bindChannel();
 
       while (true) {
+        if (!channel.isOpen()) {
+          bindChannel();
+        }
         System.out.println("Server: I am waiting for a connection");
         SocketChannel ch = channel.accept();
         System.out.println("Server: Accepted socket.");
@@ -140,6 +140,12 @@ public class Networker implements Runnable {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  public void bindChannel() throws IOException {
+    channel = ServerSocketChannel.open();
+    InetSocketAddress serverSocketAddress = new InetSocketAddress(InetAddress.getLocalHost(), port);
+    channel.bind(serverSocketAddress);
   }
 
 }
