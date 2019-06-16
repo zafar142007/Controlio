@@ -9,6 +9,7 @@ import java.nio.channels.SocketChannel;
 
 import android.app.IntentService;
 import android.content.Intent;
+import in.controlio.util.Utility;
 
 public class NetworkService extends IntentService {
 
@@ -18,9 +19,8 @@ public class NetworkService extends IntentService {
   private final String SUCCESS = "com.example.controlio.SEND_SUCCESS_STATUS";
   private final String FAILURE = "com.example.controlio.SEND_FAILURE_STATUS";
   private SocketChannel ch;
-  //private String host="192.168.42.227";
 
-  private int port = 8079;
+  private int port = Utility.PORT;
   private StringBuffer data = null;
   private Socket soc = null;
   PrintWriter pw = null;
@@ -76,6 +76,10 @@ public class NetworkService extends IntentService {
     String dataString = workIntent.getStringExtra("command");
     String ip = workIntent.getStringExtra("ipaddress");
     String p = workIntent.getStringExtra("port");
+    boolean typingMode = workIntent.getBooleanExtra(Utility.TYPE_MODE, false);
+    if(typingMode){
+      dataString=makeTypeable(dataString);
+    }
 
     if (!ip.equals("")) {
       setHost(ip);
@@ -104,6 +108,12 @@ public class NetworkService extends IntentService {
     //  LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
 
     // Do work here, based on the contents of dataString
+  }
+
+  private String makeTypeable(String dataString) {
+    if(!dataString.startsWith(Utility.TYPE_PREFIX)){
+      return Utility.TYPE_PREFIX.concat(dataString);
+    } else return dataString;
   }
 
   public void write(String message) throws Exception {

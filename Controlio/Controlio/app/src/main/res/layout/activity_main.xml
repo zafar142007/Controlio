@@ -1,76 +1,10 @@
-<!-- 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/textView1"
-    android:layout_toLeftOf="@+id/textView1"
-    android:gravity="center"
-    android:orientation="vertical" >
-
-    <EditText
-        android:id="@+id/hostPort"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="@string/hostPortText"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/hostIPTextbox"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="@string/hostIP"
-        android:inputType="phone" />
-
-    <Button
-        android:id="@+id/send"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/sendHi" />
-
-    <ImageButton
-        android:id="@+id/btnSpeak"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/speak"
-        android:src="@android:drawable/ic_btn_speak_now" />
-
-    <TextView
-        android:id="@+id/txtText"
-        android:layout_width="113dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="0.22"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-</LinearLayout>
--->
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:columnCount="4"
     android:orientation="horizontal" 
 	android:layout_gravity="center">
-<EditText
-        android:id="@+id/hostPort"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="@string/hostPortText"
-        android:inputType="number" 	
-		android:layout_columnSpan="4"
-        android:layout_gravity="fill"/>
-        
+
     <EditText
         android:id="@+id/hostIPTextbox"
         android:layout_width="fill_parent"
@@ -81,6 +15,18 @@
         android:layout_columnSpan="4"
         android:layout_gravity="fill"
         />
+
+
+  <Switch
+    android:id="@+id/typingMode"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:hint="@string/typingMode"
+    android:textColorHint="#000000"
+    android:inputType="number"
+    android:layout_columnSpan="4"
+    android:layout_gravity="fill"/>
 
     <Button
         android:id="@+id/send"

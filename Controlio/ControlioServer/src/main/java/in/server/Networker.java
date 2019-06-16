@@ -117,7 +117,7 @@ public class Networker implements Runnable {
         SocketChannel ch = channel.accept();
         System.out.println("Server: Accepted socket.");
         bytes = 0;
-        ByteBuffer buf = ByteBuffer.allocate(48);
+        ByteBuffer buf = ByteBuffer.allocate(4096);
         while (bytes == 0) {
           bytes = ch.read(buf);
           if (bytes > 0) {

@@ -1,7 +1,6 @@
 package in.controlio;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -13,8 +12,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import in.controlio.util.Utility;
 
 public class MainActivity extends Activity {
 
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
 	private EditText hostIPTextbox;
 	private Button send;
 	private EditText hostPort;
+	private Switch typingMode;
 	private Button tab, closeTab, activeWindows, newTab, previousTab, nextTab, pageUp, pageDown, 
 		back, forward, up, reload, left, down, right, options, enter, space;
 	
@@ -32,9 +34,7 @@ public class MainActivity extends Activity {
 
 		@Override
 		public void onClick(View v) {
-		//	String text=null;
-		//  Class clazz=R.class;
-		//	Class field=clazz.getEnclosingClass();
+
 			System.out.println("Keyboard: Button clicked "+v);
 
 			if(v.equals(tab))
@@ -104,8 +104,8 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		typingMode=findViewById(R.id.typingMode);
 		send=(Button)findViewById(R.id.send);
-		//txtText = (TextView) findViewById(R.id.txtText);
 		tab= (Button) findViewById(R.id.next);
 		closeTab= (Button) findViewById(R.id.closeTab);
 		activeWindows= (Button) findViewById(R.id.activeWindows);
@@ -147,7 +147,7 @@ public class MainActivity extends Activity {
 		
 		btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
 		hostIPTextbox=(EditText) findViewById(R.id.hostIPTextbox);
-		hostPort=(EditText) findViewById(R.id.hostPort);
+		//hostPort=(EditText) findViewById(R.id.hostPort);
 		
 		send.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v)
@@ -155,15 +155,14 @@ public class MainActivity extends Activity {
 				System.out.println("Button: I have been clicked");
 				Intent mServiceIntent = new Intent(MainActivity.this.getApplicationContext(), NetworkService.class);
 				//mServiceIntent.setData(Uri.parse(""));
-				mServiceIntent.putExtra("command", "TEST_COMMAND");
+				mServiceIntent.putExtra(Utility.TYPE_MODE, false);
 				String ip="";
+				mServiceIntent.putExtra("command", "TEST_COMMAND");
 				if(hostIPTextbox.getText()!=null)
 					ip=hostIPTextbox.getText().toString();
 				mServiceIntent.putExtra("ipaddress", ip);
 				System.out.println("TextBox: ip is "+ip);
-				String port="";
-				if(hostPort.getText()!=null)
-					port=hostPort.getText().toString();
+				String port=getPort();
 				System.out.println("Activity: Port being embedded is "+port);
 				mServiceIntent.putExtra("port", port);				
 				System.out.println("Main: I am starting service");
@@ -207,9 +206,9 @@ public class MainActivity extends Activity {
 		if(hostIPTextbox.getText()!=null)
 			ip=hostIPTextbox.getText().toString();
 		mServiceIntent.putExtra("ipaddress", ip);
-		String port="";
-		if(hostPort.getText()!=null)
-			port=hostPort.getText().toString();
+		mServiceIntent.putExtra(Utility.TYPE_MODE, false);
+
+		String port=getPort();
 		System.out.println("Activity: Port being embedded is "+port);
 		mServiceIntent.putExtra("port", port);
 		
@@ -219,6 +218,11 @@ public class MainActivity extends Activity {
 		MainActivity.this.startService(mServiceIntent);
 
 	}
+
+	private String getPort() {
+		return String.valueOf(Utility.PORT);
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -240,9 +244,8 @@ public class MainActivity extends Activity {
 				if(hostIPTextbox.getText()!=null)
 					ip=hostIPTextbox.getText().toString();
 				mServiceIntent.putExtra("ipaddress", ip);
-				String port="";
-				if(hostPort.getText()!=null)
-					port=hostPort.getText().toString();
+				mServiceIntent.putExtra(Utility.TYPE_MODE, typingMode.isChecked());
+				String port=getPort();
 				System.out.println("Activity: Port being embedded is "+port);
 				mServiceIntent.putExtra("port", port);
 				

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="speak">Speak</string>
     <string name="action_settings">Settings</string>
     <string name="controlio">ControlIO</string>
-	<string name="hostIP">Enter host\'s IP</string>
-	<string name="hostPortText">Enter host\'s port</string>
-	<string name="sendHi">Test</string>
+	  <string name="hostIP">Enter host\'s IP</string>
+    <string name="typingMode">Typing Mode</string>
+	  <string name="sendHi">Test</string>
 </resources>

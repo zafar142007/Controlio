@@ -81,8 +81,8 @@ public class Dictionary {
     if (command != null && command.toLowerCase()
         .startsWith(ControlioConstants.TYPE_COMMAND_PREFIX)) {
       String text = getTypingText(command);
-      String[] instructions=getInstructions(text);
-      char[] sequence=getSequence(instructions);
+      String[] instructions = getInstructions(text);
+      char[] sequence = getSequence(instructions);
       Command[] commands = new Command[3];
       commands[0] = new Command();
       commands[0].setSequence(sequence);
@@ -104,20 +104,26 @@ public class Dictionary {
   }
 
   private char[] getSequence(String[] instructions) {
-    char sequence[]=new char[instructions.length*2];
-    char seq='a';
-    for(int i=0; i<instructions.length; i++){
-      sequence[i*2]=seq++;
-      sequence[i*2+1]=seq++;
+    char sequence[] = new char[instructions.length * 2];
+    char seq = 'a';
+    for (int i = 0; i < instructions.length; i++) {
+      sequence[i * 2] = seq++;
+      sequence[i * 2 + 1] = seq++;
     }
     return sequence;
   }
 
   private String[] getInstructions(String text) {
-    String[] instructions=new String[text.length()];
-    for(int i=0; i<text.length(); i++){
-      if(text.charAt(i)==' '){
-        instructions[i]="VK_SPACE";
+    String[] instructions = new String[text.length()];
+    for (int i = 0; i < text.length(); i++) {
+      if (text.charAt(i) == ' ') {
+        instructions[i] = "VK_SPACE";
+      } else if (text.charAt(i) == '.') {
+        instructions[i] = "VK_PERIOD";
+      } else if (text.charAt(i) == ',') {
+        instructions[i] = "VK_COMMA";
+      } else if (text.charAt(i) == '-') {
+        instructions[i] = "VK_MINUS";
       } else {
         instructions[i] = ("VK_" + text.charAt(i)).toUpperCase();
       }
@@ -127,6 +133,6 @@ public class Dictionary {
 
   private String getTypingText(String command) {
     return command.substring(command.indexOf(ControlioConstants.TYPE_COMMAND_PREFIX)
-        + ControlioConstants.TYPE_COMMAND_PREFIX.length()).trim().replaceAll("_"," " );
+        + ControlioConstants.TYPE_COMMAND_PREFIX.length()).trim().replaceAll("_", " ");
   }
 }

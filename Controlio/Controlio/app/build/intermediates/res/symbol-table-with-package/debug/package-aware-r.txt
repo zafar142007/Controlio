@@ -71,7 +71,6 @@ id end_padder
 id forever
 id forward
 id hostIPTextbox
-id hostPort
 id icon
 id icon_group
 id info
@@ -103,6 +102,7 @@ id text
 id text2
 id time
 id title
+id typingMode
 id up
 integer cancel_button_image_alpha
 integer status_bar_notification_info_maxnum
@@ -126,10 +126,10 @@ menu main
 string action_settings
 string controlio
 string hostIP
-string hostPortText
 string sendHi
 string speak
 string status_bar_notification_info_overflow
+string typingMode
 style AppBaseTheme
 style AppTheme
 style TextAppearance_Compat_Notification

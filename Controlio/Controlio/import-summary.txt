@@ -58,7 +58,7 @@ so manually move them:
 * ControlioServer/src/in/server/ControlioServer.java
 * ControlioServer/src/in/server/Networker.java
 * ControlioServer/src/in/server/util/
-* ControlioServer/src/in/server/util/ControlioConstants.java
+* ControlioServer/src/in/server//ControlioConstants.java
 * ControlioServer/target/
 * ControlioServer/target/ControlioServer-1.1-executable.jar
 * ControlioServer/target/ControlioServer-1.1.jar

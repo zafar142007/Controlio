@@ -42,15 +42,20 @@ public class ControlScreen {
         for (int i = 0; i < sequence.length; i++) {
           order = ((char) (sequence[i]) - (char) ('a'));
           String f = instructions[order / 2];
-          field = clazz.getField(f);
-          if (order % 2 == 0) {
-            //System.out.println("Printing"+field.get(null));
-            control.keyPress((int) field.get(null));//press "KeyEvent."+instructions[(order/2)]
-            unpressedKeys.add(field);
-          } else {
-            //System.out.println("Printing"+field.get(null));
-            control.keyRelease((int) field.get(null));//press "KeyEvent."+instructions[(order/2)]
-            unpressedKeys.remove(field);
+          try {
+            field = clazz.getField(f);
+            if (order % 2 == 0) {
+              //System.out.println("Printing"+field.get(null));
+              control.keyPress((int) field.get(null));//press "KeyEvent."+instructions[(order/2)]
+              unpressedKeys.add(field);
+            } else {
+              //System.out.println("Printing"+field.get(null));
+              control.keyRelease((int) field.get(null));//press "KeyEvent."+instructions[(order/2)]
+              unpressedKeys.remove(field);
+            }
+          }
+          catch(Exception e){
+            e.printStackTrace();
           }
         }
         System.out.println("Robot: I have executed command");
