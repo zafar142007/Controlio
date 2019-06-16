@@ -1,6 +1,7 @@
 package in.controlio;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -178,7 +179,7 @@ public class MainActivity extends Activity {
 				Intent intent = new Intent(
 						RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
-				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+				intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en_IN");
 
 				try {
 					startActivityForResult(intent, RESULT_SPEECH);

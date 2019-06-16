@@ -55,7 +55,8 @@ public class Networker implements Runnable {
     Command[] commands = null;
     if (isTest(sanitize(command))) {
       showTestStatus();
-    } else {
+    }
+    else {
       commands = dictionary.getCommands(sanitize(command));
       if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
         for (int i = 0; i < commands.length; i++) {
