@@ -25,6 +25,8 @@ Example:
 
 previous_tab= VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@win, VK_CONTROL%VK_SHIFT%VK_TAB@acefdb@nix
 
+If you use 'typing mode', anything that you say using the microphone button, will be entered as it is on your desktop in the current active window. With typing mode off, you can still enter text by starting your voice command with the word 'type', and it will be entered as it is on your desktop. 
+
 License
 =======
 Apache 2.0
