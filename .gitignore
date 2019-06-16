@@ -1,7 +1,9 @@
 .gradle
 .idea
-build/*
+.project
+.settings
+/*/build/*
 !Controlio/Controlio/app/build/intermediates/instant-run-apk/debug/app-debug.apk
-target/*
+/*/target/*
 !Controlio/ControlioServer/target/ControlioServer-1.1-executable.jar
 
