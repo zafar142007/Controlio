@@ -2,12 +2,15 @@ package in.control;
 
 public class Command {
 
-  private String[] instructions = null;
-  private char[] sequence = null;
+
   private Platform platform;
+  private String payload;
 
   public Command() {
+  }
 
+  public void setPayload(String payload) {
+    this.payload = payload;
   }
 
   public void setPlatform(Platform platform) {
@@ -18,25 +21,7 @@ public class Command {
     return platform;
   }
 
-  public Command(String[] instructions, char[] sequence) {
-    this.instructions = instructions;
-    this.sequence = sequence;
+  public String getPayload() {
+    return payload;
   }
-
-  public char[] getSequence() {
-    return sequence;
-  }
-
-  public void setSequence(char[] sequence) {
-    this.sequence = sequence;
-  }
-
-  void setInstructions(String[] instructions) {
-    this.instructions = instructions;
-  }
-
-  public String[] getInstructions() {
-    return instructions;
-  }
-
 }

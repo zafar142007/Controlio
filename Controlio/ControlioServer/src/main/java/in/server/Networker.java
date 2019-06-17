@@ -2,6 +2,8 @@ package in.server;
 
 import in.control.Command;
 import in.control.CommandNotFoundException;
+import in.control.ControlDelegator;
+import in.control.ControlDelegatorImpl;
 import in.control.ControlScreen;
 import in.control.Dictionary;
 import in.server.util.ControlioConstants;
@@ -22,9 +24,7 @@ public class Networker implements Runnable {
   //setPort() is called
   private ServerSocketChannel channel;
   private int port = 8079;
-  private ControlioServer server;
-  private ControlScreen remote = new ControlScreen();
-  private Dictionary dictionary = new Dictionary();
+  private ControlDelegator delegator=new ControlDelegatorImpl() ;
   private String host = "localhost";
 
   public int getPort() {
@@ -43,65 +43,6 @@ public class Networker implements Runnable {
     this.host = host;
   }
 
-  public void setRemote(ControlScreen remote) {
-    this.remote = remote;
-  }
-
-  public String sanitize(String string) {
-    return string.trim().toLowerCase().replace(' ', '_');
-  }
-
-  public Command interpret(String command) throws CommandNotFoundException {
-    Command[] commands = null;
-    if (isTest(sanitize(command))) {
-      showTestStatus();
-    }
-    else {
-      commands = dictionary.getCommands(sanitize(command));
-      if (System.getProperty("os.name").toLowerCase().indexOf("win") >= 0) {
-        for (int i = 0; i < commands.length; i++) {
-          if (commands[i].getPlatform().toString().equals("win")) {
-            return commands[i];
-          }
-        }
-      } else if (System.getProperty("os.name").toLowerCase().indexOf("nux") >= 0) {
-        for (int i = 0; i < commands.length; i++) {
-          if (commands[i].getPlatform().toString().equals("nix")) {
-            return commands[i];
-          }
-        }
-      } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
-        for (int i = 0; i < commands.length; i++) {
-          if (commands[i].getPlatform().toString().equals("osx")) {
-            return commands[i];
-          }
-        }
-      }
-    }
-    return null;
-
-  }
-
-  private boolean isTest(String command) {
-    return command.equals(ControlioConstants.TEST_COMMAND.toLowerCase());
-  }
-
-  private void showTestStatus() {
-    JFrame alert = new JFrame();
-    alert.setSize(300, 70);
-    alert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    alert.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width / 2 - 200,
-        Toolkit.getDefaultToolkit().getScreenSize().height / 2 - 70);
-    alert.setTitle("Setup");
-    try {
-      alert.add(new JLabel("You are all set!\nYou can now close this popup."));
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
-    alert.setAutoRequestFocus(true);
-    alert.setVisible(true);
-  }
-
 
   public void run() {
 
@@ -117,17 +58,16 @@ public class Networker implements Runnable {
         SocketChannel ch = channel.accept();
         System.out.println("Server: Accepted socket.");
         bytes = 0;
-        ByteBuffer buf = ByteBuffer.allocate(4096);
+        ByteBuffer buf = ByteBuffer.allocate(ControlioConstants.BUFFER_SIZE_BYTES);
         while (bytes == 0) {
           bytes = ch.read(buf);
           if (bytes > 0) {
             byte[] b = buf.array();
-
             String command = new String(b);
             buf.clear();
             System.out.println("Client: " + command);
             try {
-              remote.execute(interpret(command));
+              delegator.delegate(command).execute(command);
             } catch (CommandNotFoundException e) {
               System.out.println("Server: Invalid command: " + e);
             }

@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
 	private TextView txtText;
 	private EditText hostIPTextbox;
 	private Button send;
+	private Button copyButton;
 	private EditText hostPort;
 	private Switch typingMode;
 	private Button tab, closeTab, activeWindows, newTab, previousTab, nextTab, pageUp, pageDown, 
@@ -96,6 +97,8 @@ public class MainActivity extends Activity {
 			}else if(v.equals(space))
 			{
 				sendToService("stop");
+			} else if(v.equals(copyButton)){
+				sendToService(Utility.COPY_COMMAND);
 			}
 		}
 		
@@ -104,6 +107,7 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		copyButton=findViewById(R.id.copyButton);
 		typingMode=findViewById(R.id.typingMode);
 		send=(Button)findViewById(R.id.send);
 		tab= (Button) findViewById(R.id.next);
@@ -124,7 +128,8 @@ public class MainActivity extends Activity {
 		enter= (Button) findViewById(R.id.open);
 		options=(Button) findViewById(R.id.options);
 		space= (Button) findViewById(R.id.stop);
-		
+
+		copyButton.setOnClickListener(myListener);
 		tab.setOnClickListener(myListener);
 		closeTab.setOnClickListener(myListener);
 		activeWindows.setOnClickListener(myListener); 

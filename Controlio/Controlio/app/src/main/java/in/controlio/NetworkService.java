@@ -8,6 +8,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
 
 import android.app.IntentService;
+import android.content.ClipData;
+import android.content.ClipDescription;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import in.controlio.util.Utility;
 
@@ -79,6 +83,14 @@ public class NetworkService extends IntentService {
     boolean typingMode = workIntent.getBooleanExtra(Utility.TYPE_MODE, false);
     if(typingMode){
       dataString=makeTypeable(dataString);
+    } else if(isCopyCommand(dataString)){
+      String clipboardContent=getClipboardContent();
+      if(clipboardContent==null || clipboardContent.isEmpty()){
+        System.out.println("There is no valid text on the clipboard");
+        return;
+      } else{
+        dataString=clipboardContent;
+      }
     }
 
     if (!ip.equals("")) {
@@ -108,6 +120,24 @@ public class NetworkService extends IntentService {
     //  LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
 
     // Do work here, based on the contents of dataString
+  }
+
+  private String getClipboardContent() {
+    ClipboardManager clipboard = (ClipboardManager)
+        getSystemService(Context.CLIPBOARD_SERVICE);
+    if (clipboard.hasPrimaryClip()) {
+      if (clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)){
+        ClipData data = clipboard.getPrimaryClip();
+        if(data!=null){
+          String pasteData=data.getItemAt(0).getText().toString();
+          return Utility.COPY_COMMAND.concat(" ").concat(pasteData);
+        }
+      }
+    }
+    return null;
+  }
+  private boolean isCopyCommand(String command) {
+    return command.equals(Utility.COPY_COMMAND);
   }
 
   private String makeTypeable(String dataString) {

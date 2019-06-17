@@ -66,6 +66,7 @@ id btnSpeak
 id cancel_action
 id chronometer
 id closeTab
+id copyButton
 id down
 id end_padder
 id forever
@@ -125,6 +126,7 @@ layout notification_template_part_time
 menu main
 string action_settings
 string controlio
+string copy
 string hostIP
 string sendHi
 string speak
