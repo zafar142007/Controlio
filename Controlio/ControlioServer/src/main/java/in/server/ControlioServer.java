@@ -154,8 +154,8 @@ public class ControlioServer {
       // create menu exitMenu for the default action
       server.ipMenu.addActionListener(server.listener);
       server.popup.add(server.ipMenu);
-      server.portMenu.addActionListener(server.listener);
-      server.popup.add(server.portMenu);
+    //  server.portMenu.addActionListener(server.listener);
+    //  server.popup.add(server.portMenu);
       server.settingsMenu.addActionListener(server.listener);
 //			server.popup.add(server.settingsMenu);
       server.exitMenu.addActionListener(server.listener);
