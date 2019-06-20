@@ -27,6 +27,7 @@ public class ControlioServer {
   private final MenuItem settingsMenu = new MenuItem("Settings");
   private final MenuItem ipMenu = new MenuItem("Get IP of this machine");
   private final MenuItem portMenu = new MenuItem("Set port");
+  private final MenuItem refreshMenu = new MenuItem("Refresh connection");
   private final MenuItem exitMenu = new MenuItem("Exit");
   private JTextField textField;
   private JLabel label, error;
@@ -44,15 +45,23 @@ public class ControlioServer {
 
   public void setPort(int port) {
     this.PORT = port;
+    refreshConnection();
+  }
+
+  public void refreshConnection() {
     this.master.interrupt();
     networker = new Networker();
     //	networker.setRemote(remote);
-    networker.setPort(port);
+    networker.setPort(getPort());
     this.master = new Thread(networker);
     this.master.start();
   }
 
   public ControlioServer() {
+    setIP();
+  }
+
+  public void setIP() {
     try {
       ip = InetAddress.getLocalHost().getHostAddress();
     } catch (UnknownHostException e) {
@@ -63,14 +72,18 @@ public class ControlioServer {
   class MyListener implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-      if (e.getSource().equals(settingsMenu)) {
+      if (e.getSource().equals(refreshMenu)) {
+        setIP();
+        refreshConnection();
+      }
+      else if (e.getSource().equals(settingsMenu)) {
 
       }
       // execute default action of the application
-      if (e.getSource().equals(exitMenu)) {
+      else if (e.getSource().equals(exitMenu)) {
         System.out.println("Server: Exiting");
         System.exit(0);
-      }
+      } else
       if (e.getSource().equals(portMenu)) {
         System.out.println("Server: Context port menu clicked");
         button = new JButton("Set");
@@ -159,6 +172,8 @@ public class ControlioServer {
       server.settingsMenu.addActionListener(server.listener);
 //			server.popup.add(server.settingsMenu);
       server.exitMenu.addActionListener(server.listener);
+      server.refreshMenu.addActionListener(server.listener);
+      server.popup.add(server.refreshMenu);
       server.popup.add(server.exitMenu);
       try {
         server.trayIcon = new TrayIcon(server.image, "Controlio", server.popup);

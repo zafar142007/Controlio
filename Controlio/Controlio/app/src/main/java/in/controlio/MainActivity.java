@@ -129,6 +129,7 @@ public class MainActivity extends Activity {
 		options=(Button) findViewById(R.id.options);
 		space= (Button) findViewById(R.id.stop);
 
+
 		copyButton.setOnClickListener(myListener);
 		tab.setOnClickListener(myListener);
 		closeTab.setOnClickListener(myListener);
