@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,6 +40,14 @@ public class ControlioServer {
 
   Thread master = null;
   Networker networker;
+
+  public void setupUIElements(List<MenuItem> items, PopupMenu menu,
+      ActionListener listener) {
+    for(MenuItem item: items){
+      item.addActionListener(listener);
+      menu.add(item);
+    }
+  }
 
   public int getPort() {
     return PORT;
@@ -75,16 +85,14 @@ public class ControlioServer {
       if (e.getSource().equals(refreshMenu)) {
         setIP();
         refreshConnection();
-      }
-      else if (e.getSource().equals(settingsMenu)) {
+      } else if (e.getSource().equals(settingsMenu)) {
 
       }
       // execute default action of the application
       else if (e.getSource().equals(exitMenu)) {
         System.out.println("Server: Exiting");
         System.exit(0);
-      } else
-      if (e.getSource().equals(portMenu)) {
+      } else if (e.getSource().equals(portMenu)) {
         System.out.println("Server: Context port menu clicked");
         button = new JButton("Set");
         textField = new JTextField(6);
@@ -111,8 +119,7 @@ public class ControlioServer {
         button.addActionListener(listener);
         alert.setVisible(true);
         alert.setAutoRequestFocus(true);
-      }
-      if (e.getSource().equals(button)) {
+      } else if (e.getSource().equals(button)) {
         System.out.println("Button: I was pressed");
         try {
           String text = textField.getText();
@@ -127,8 +134,7 @@ public class ControlioServer {
         } catch (Exception ex) {
           ex.printStackTrace();
         }
-      }
-      if (e.getSource().equals(ipMenu)) {
+      } else if (e.getSource().equals(ipMenu)) {
         alert = new JFrame();
         alert.setSize(200, 70);
         alert.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -161,23 +167,13 @@ public class ControlioServer {
       } catch (Exception e) {
         e.printStackTrace();
       }
-      // create a action listener to listen for default action executed on the tray icon
-      // create a popup menu
+
       server.popup = new PopupMenu();
-      // create menu exitMenu for the default action
-      server.ipMenu.addActionListener(server.listener);
-      server.popup.add(server.ipMenu);
-    //  server.portMenu.addActionListener(server.listener);
-    //  server.popup.add(server.portMenu);
-      server.settingsMenu.addActionListener(server.listener);
-//			server.popup.add(server.settingsMenu);
-      server.exitMenu.addActionListener(server.listener);
-      server.refreshMenu.addActionListener(server.listener);
-      server.popup.add(server.refreshMenu);
-      server.popup.add(server.exitMenu);
+      List<MenuItem> list= Arrays.asList(new MenuItem[]{server.ipMenu, server.refreshMenu, server.exitMenu });
+      server.setupUIElements(list, server.popup, server.listener);
+
       try {
         server.trayIcon = new TrayIcon(server.image, "Controlio", server.popup);
-        //System.out.println(server.trayIcon==null);
         server.trayIcon.addActionListener(server.listener);
       } catch (Exception e) {
         e.printStackTrace();
