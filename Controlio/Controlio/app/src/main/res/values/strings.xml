@@ -3,8 +3,9 @@
     <string name="speak">Speak</string>
     <string name="action_settings">Settings</string>
     <string name="controlio">ControlIO</string>
-	  <string name="hostIP">Enter host\'s IP</string>
+	  <string name="hostIP">Not connected</string>
     <string name="typingMode">Typing Mode</string>
 	  <string name="sendHi">Test</string>
   <string name="copy">Copy to computer clipboard</string>
+  <string name="scanButton">Scan network</string>
 </resources>

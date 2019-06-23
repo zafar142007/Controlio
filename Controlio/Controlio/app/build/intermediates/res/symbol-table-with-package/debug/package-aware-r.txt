@@ -72,6 +72,7 @@ id end_padder
 id forever
 id forward
 id hostIPTextbox
+id hostsDropdown
 id icon
 id icon_group
 id info
@@ -92,10 +93,12 @@ id options
 id pageDown
 id pageUp
 id previousTab
+id progressBar
 id reload
 id right
 id right_icon
 id right_side
+id scanButton
 id send
 id status_bar_latest_event_content
 id stop
@@ -128,6 +131,7 @@ string action_settings
 string controlio
 string copy
 string hostIP
+string scanButton
 string sendHi
 string speak
 string status_bar_notification_info_overflow

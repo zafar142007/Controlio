@@ -59,6 +59,7 @@ public class ControlioServer {
   }
 
   public void refreshConnection() {
+    this.networker.cleanup();
     this.master.interrupt();
     networker = new Networker();
     //	networker.setRemote(remote);

@@ -2,18 +2,24 @@ package in.controlio;
 
 import java.util.ArrayList;
 
+
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 import in.controlio.util.Utility;
 
@@ -21,15 +27,18 @@ public class MainActivity extends Activity {
 
 	protected static final int RESULT_SPEECH = 1;
 	private ImageButton btnSpeak;
-	private TextView txtText;
-	private EditText hostIPTextbox;
+	private MenuItem hostIPTextbox;
+	private ProgressBar progressBar;
 	private Button send;
 	private Button copyButton;
 	private EditText hostPort;
 	private Switch typingMode;
+	private NetworkScanner scanner=new NetworkScanner(Utility.PORT);
 	private Button tab, closeTab, activeWindows, newTab, previousTab, nextTab, pageUp, pageDown, 
-		back, forward, up, reload, left, down, right, options, enter, space;
-	
+		back, forward, up, reload, left, down, right, options, enter, space, scanButton;
+	private Spinner hostsDropdown;
+	private ArrayAdapter<String> hostsAdapter;
+
 	private class MyListener implements View.OnClickListener
 	{
 
@@ -37,7 +46,11 @@ public class MainActivity extends Activity {
 		public void onClick(View v) {
 
 			System.out.println("Keyboard: Button clicked "+v);
-
+			if(v.equals(scanButton)){
+//				hostsAdapter.clear();
+				progressBar.setVisibility(View.VISIBLE);
+				scanner.scan(hostsAdapter, progressBar);
+			}else
 			if(v.equals(tab))
 			{
 				sendToService("next");
@@ -106,7 +119,11 @@ public class MainActivity extends Activity {
 	private MyListener myListener=new MyListener();
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		hostsAdapter= new ArrayAdapter<>(
+				this, android.R.layout.simple_spinner_dropdown_item);
 		setContentView(R.layout.activity_main);
+		progressBar=findViewById(R.id.progressBar);
+		hostsDropdown =findViewById(R.id.hostsDropdown);
 		copyButton=findViewById(R.id.copyButton);
 		typingMode=findViewById(R.id.typingMode);
 		send=(Button)findViewById(R.id.send);
@@ -128,7 +145,25 @@ public class MainActivity extends Activity {
 		enter= (Button) findViewById(R.id.open);
 		options=(Button) findViewById(R.id.options);
 		space= (Button) findViewById(R.id.stop);
+		scanButton=findViewById(R.id.scanButton);
 
+		hostsDropdown.setAdapter(hostsAdapter);
+
+		hostsDropdown.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				String value= parent.getItemAtPosition(position).toString();
+				if(!value.equals(Utility.SEARCHING_MESSAGE)) {
+					hostIPTextbox.setTitle(value);
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+
+			}
+		});
 
 		copyButton.setOnClickListener(myListener);
 		tab.setOnClickListener(myListener);
@@ -149,12 +184,10 @@ public class MainActivity extends Activity {
 		enter.setOnClickListener(myListener);
 		options.setOnClickListener(myListener);
 		space.setOnClickListener(myListener);
-		
+		scanButton.setOnClickListener(myListener);
 		
 		btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
-		hostIPTextbox=(EditText) findViewById(R.id.hostIPTextbox);
-		//hostPort=(EditText) findViewById(R.id.hostPort);
-		
+
 		send.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v)
 			{
@@ -164,8 +197,8 @@ public class MainActivity extends Activity {
 				mServiceIntent.putExtra(Utility.TYPE_MODE, false);
 				String ip="";
 				mServiceIntent.putExtra("command", "TEST_COMMAND");
-				if(hostIPTextbox.getText()!=null)
-					ip=hostIPTextbox.getText().toString();
+				if(hostIPTextbox.getTitle()!=null)
+					ip=hostIPTextbox.getTitle().toString();
 				mServiceIntent.putExtra("ipaddress", ip);
 				System.out.println("TextBox: ip is "+ip);
 				String port=getPort();
@@ -203,25 +236,27 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
+		hostIPTextbox=menu.findItem(R.id.hostIPTextbox);
 		return true;
 	}
 
 	public void sendToService(String text){
 		Intent mServiceIntent = new Intent(MainActivity.this.getApplicationContext(), NetworkService.class);
 		String ip="";
-		if(hostIPTextbox.getText()!=null)
-			ip=hostIPTextbox.getText().toString();
-		mServiceIntent.putExtra("ipaddress", ip);
-		mServiceIntent.putExtra(Utility.TYPE_MODE, false);
+		if(hostIPTextbox!=null && hostIPTextbox.getTitle()!=null) {
+			ip = hostIPTextbox.getTitle().toString();
+			mServiceIntent.putExtra("ipaddress", ip);
+			mServiceIntent.putExtra(Utility.TYPE_MODE, false);
 
-		String port=getPort();
-		System.out.println("Activity: Port being embedded is "+port);
-		mServiceIntent.putExtra("port", port);
-		
-		System.out.println("TextBox: ip is "+ip);
-		mServiceIntent.putExtra("command", text);
-		System.out.println("Main: I am starting service");
-		MainActivity.this.startService(mServiceIntent);
+			String port = getPort();
+			System.out.println("Activity: Port being embedded is " + port);
+			mServiceIntent.putExtra("port", port);
+
+			System.out.println("TextBox: ip is " + ip);
+			mServiceIntent.putExtra("command", text);
+			System.out.println("Main: I am starting service");
+			MainActivity.this.startService(mServiceIntent);
+		}
 
 	}
 
@@ -247,8 +282,8 @@ public class MainActivity extends Activity {
 				System.out.println("STT Button: I have been clicked");
 				Intent mServiceIntent = new Intent(MainActivity.this.getApplicationContext(), NetworkService.class);
 				String ip="";
-				if(hostIPTextbox.getText()!=null)
-					ip=hostIPTextbox.getText().toString();
+				if(hostIPTextbox.getTitle()!=null)
+					ip=hostIPTextbox.getTitle().toString();
 				mServiceIntent.putExtra("ipaddress", ip);
 				mServiceIntent.putExtra(Utility.TYPE_MODE, typingMode.isChecked());
 				String port=getPort();

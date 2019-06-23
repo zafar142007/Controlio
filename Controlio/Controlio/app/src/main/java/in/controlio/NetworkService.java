@@ -22,7 +22,6 @@ public class NetworkService extends IntentService {
   private final String BROADCAST_ACTION = "com.example.controlio.BROADCAST";
   private final String SUCCESS = "com.example.controlio.SEND_SUCCESS_STATUS";
   private final String FAILURE = "com.example.controlio.SEND_FAILURE_STATUS";
-  private SocketChannel ch;
 
   private int port = Utility.PORT;
   private StringBuffer data = null;
