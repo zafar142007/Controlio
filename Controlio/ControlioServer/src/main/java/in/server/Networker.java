@@ -5,18 +5,12 @@ import in.control.ControlDelegator;
 import in.control.ControlDelegatorImpl;
 import in.server.util.ControlioConstants;
 import java.io.IOException;
-import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.InterfaceAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.nio.channels.ClosedByInterruptException;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.List;
 
 public class Networker implements Runnable {
 
@@ -46,53 +40,50 @@ public class Networker implements Runnable {
 
   public void run() {
 
-    try {
-      int bytes = 0;
-      bindChannel();
+    int bytes = 0;
+    SocketChannel ch = null;
+    ByteBuffer buf = ByteBuffer.allocate(ControlioConstants.BUFFER_SIZE_BYTES);
 
-      while (true) {
-        if (!channel.isOpen()) {
-          bindChannel();
-        }
-        System.out.println("Server: I am waiting for a connection");
-        SocketChannel ch = channel.accept();
-        System.out.println("Server: Accepted socket.");
-        bytes = 0;
-        ByteBuffer buf = ByteBuffer.allocate(ControlioConstants.BUFFER_SIZE_BYTES);
-        while (bytes == 0 && channel.isOpen() && ch.isConnected()) {
-          bytes = ch.read(buf);
-          if (bytes > 0) {
-            byte[] b = buf.array();
-            String command = new String(b);
-            buf.clear();
-            System.out.println("Client: " + command);
-            try {
-              delegator.delegate(command).execute(command);
-            } catch (CommandNotFoundException e) {
-              System.out.println("Server: Invalid command: " + e);
-            }
-            break;
-          } else if(bytes==-1){
-            channel.close();
+    while (true) {
+      try {
+        if (bytes==-1 || channel==null || (channel != null && !channel.isOpen()) || (ch==null) || (ch!=null && !ch.isConnected())) {
+          if(channel==null || (channel != null && !channel.isOpen())) {
             bindChannel();
           }
+          System.out.println("Server: I am waiting for a connection");
+          ch = channel.accept();
+          System.out.println("Server: Accepted socket.");
         }
+        bytes = ch.read(buf);
+        if (bytes > 0) {
+          byte[] b = buf.array();
+          String command = new String(b);
+          buf.clear();
+          System.out.println("Client: " + command);
+          try {
+            delegator.delegate(command).execute(command);
+          } catch (CommandNotFoundException e) {
+            System.out.println("Server: Invalid command: " + e);
+          }
+        }
+      } catch (ClosedByInterruptException ex) {
+        System.out.println("Network Thread: I have been interrupted");
+        break;
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-    } catch (ClosedByInterruptException ex) {
-      System.out.println("Network Thread: I have been interrupted");
-    } catch (Exception e) {
-      e.printStackTrace();
     }
   }
 
   public void bindChannel() throws IOException {
+    System.out.println("binding channel");
     channel = ServerSocketChannel.open();
     InetSocketAddress serverSocketAddress = new InetSocketAddress(InetAddress.getLocalHost(), port);
     channel.bind(serverSocketAddress);
   }
 
 
-  public void cleanup(){
+  public void cleanup() {
     try {
       channel.close();
     } catch (IOException e) {

@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
+import in.controlio.util.AdapterWrapper;
 import in.controlio.util.Utility;
 
 public class MainActivity extends Activity {
@@ -37,7 +38,7 @@ public class MainActivity extends Activity {
 	private Button tab, closeTab, activeWindows, newTab, previousTab, nextTab, pageUp, pageDown, 
 		back, forward, up, reload, left, down, right, options, enter, space, scanButton;
 	private Spinner hostsDropdown;
-	private ArrayAdapter<String> hostsAdapter;
+	private AdapterWrapper adapterWrapper;
 
 	private class MyListener implements View.OnClickListener
 	{
@@ -49,7 +50,7 @@ public class MainActivity extends Activity {
 			if(v.equals(scanButton)){
 //				hostsAdapter.clear();
 				progressBar.setVisibility(View.VISIBLE);
-				scanner.scan(hostsAdapter, progressBar);
+				scanner.scan(adapterWrapper, progressBar);
 			}else
 			if(v.equals(tab))
 			{
@@ -119,8 +120,8 @@ public class MainActivity extends Activity {
 	private MyListener myListener=new MyListener();
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		hostsAdapter= new ArrayAdapter<>(
-				this, android.R.layout.simple_spinner_dropdown_item);
+		adapterWrapper=new AdapterWrapper(new ArrayAdapter<String>(
+				this, android.R.layout.simple_spinner_dropdown_item));
 		setContentView(R.layout.activity_main);
 		progressBar=findViewById(R.id.progressBar);
 		hostsDropdown =findViewById(R.id.hostsDropdown);
@@ -147,7 +148,7 @@ public class MainActivity extends Activity {
 		space= (Button) findViewById(R.id.stop);
 		scanButton=findViewById(R.id.scanButton);
 
-		hostsDropdown.setAdapter(hostsAdapter);
+		hostsDropdown.setAdapter(adapterWrapper.getHostsAdapter());
 
 		hostsDropdown.setOnItemSelectedListener(new OnItemSelectedListener(){
 

@@ -8,4 +8,5 @@ public interface Utility {
   int SCAN_TIMEOUT_MS = 2000;
   int REACHABILTY_TIMEOUT_MS = 150;
   String SEARCHING_MESSAGE = "Searching...";
+  int SO_TIMEOUT_MS = 200;
 }

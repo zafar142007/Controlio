@@ -9,7 +9,6 @@ import java.net.NetworkInterface;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -19,8 +18,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import in.controlio.util.AdapterWrapper;
 import in.controlio.util.Utility;
 
 public class NetworkScanner {
@@ -33,7 +32,7 @@ public class NetworkScanner {
   }
 
 
-  public void scan(final ArrayAdapter<String> hostsAdapter, final ProgressBar progressBar){
+  public void scan(final AdapterWrapper hostsAdapter, final ProgressBar progressBar){
     executorService.submit(new Runnable() {
       @Override
       public void run() {
@@ -53,7 +52,7 @@ public class NetworkScanner {
   }
 
   public void findSockets(Enumeration<NetworkInterface> networks,
-      ArrayAdapter<String> hostsAdapter) {
+      AdapterWrapper adapterWrapper) {
 
     Set<String> set=new HashSet<>();
     for (NetworkInterface network : Collections.list(networks)) {
@@ -73,10 +72,11 @@ public class NetworkScanner {
                 RemoteMachine remote;
                 if ((remote = checkHost(address)) != null) {
 
-                  if(hostsAdapter.getPosition(remote.getHostname())==-1) {
-                    hostsAdapter.add(remote.getHostname());
-                  }
+                  remote.getSocket().shutdownOutput();
+                  remote.getSocket().shutdownInput();
                   remote.getSocket().close();
+                  adapterWrapper.addHost(remote.getHostname());
+
                 }
               } catch (IOException e) {
                 e.printStackTrace();
@@ -149,6 +149,8 @@ public class NetworkScanner {
     if(host.isReachable(Utility.REACHABILTY_TIMEOUT_MS)){
       Socket soc = new Socket();
       try {
+        soc.setSoTimeout(Utility.SO_TIMEOUT_MS);
+        soc.setKeepAlive(false);
         soc.connect(new InetSocketAddress(host, port), Utility.SCAN_TIMEOUT_MS);
         System.out.println("could connect to "+host);
         return new RemoteMachine(soc, h);
