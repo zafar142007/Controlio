@@ -63,8 +63,6 @@ public class NetworkScanner {
         if (inetAddress instanceof Inet4Address && !inetAddress.isLoopbackAddress()) {
           int mask=interfaceAddress.getNetworkPrefixLength();
 
-          Integer add = Integer.parseInt(inetAddress.getHostAddress()
-              .substring(inetAddress.getHostAddress().lastIndexOf(".") + 1));
           List<Byte[]> addresses=getUsableAddresses(inetAddress.getAddress(), mask);
 
           for (Byte[] address:addresses) {

@@ -42,7 +42,7 @@ public class Networker implements Runnable {
 
     int bytes = 0;
     SocketChannel ch = null;
-    ByteBuffer buf = ByteBuffer.allocate(ControlioConstants.BUFFER_SIZE_BYTES);
+    ByteBuffer buf;
 
     while (true) {
       try {
@@ -54,11 +54,11 @@ public class Networker implements Runnable {
           ch = channel.accept();
           System.out.println("Server: Accepted socket.");
         }
+        buf=ByteBuffer.allocate(ControlioConstants.BUFFER_SIZE_BYTES);
         bytes = ch.read(buf);
         if (bytes > 0) {
           byte[] b = buf.array();
           String command = new String(b);
-          buf.clear();
           System.out.println("Client: " + command);
           try {
             delegator.delegate(command).execute(command);

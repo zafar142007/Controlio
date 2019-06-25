@@ -163,7 +163,7 @@ public class NetworkService extends IntentService {
         pw = new PrintWriter(new OutputStreamWriter(soc.getOutputStream()), true);
       }
       pw.println(message);
-      System.out.println("Service:I have written data to network");
+      System.out.println("Service:I have written "+message+" data to network");
     } catch (Exception e) {
       e.printStackTrace();
     }

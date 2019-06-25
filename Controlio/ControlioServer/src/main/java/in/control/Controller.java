@@ -33,7 +33,7 @@ public abstract class Controller {
           }
         }
       } else if (System.getProperty("os.name").toLowerCase().indexOf("mac") >= 0) {
-        for (int i = 0; i < commands.length; i++) {
+            for (int i = 0; i < commands.length; i++) {
           if (commands[i].getPlatform().toString().equals("osx")) {
             return commands[i];
           }
