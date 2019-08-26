@@ -164,7 +164,7 @@
         android:layout_row="4"
         android:progressBackgroundTintMode="src_atop"
         android:progressBackgroundTint="@android:color/holo_blue_dark"
-        android:animateLayoutChanges="true"
+        android:animateLayoutChanges="false"
         android:layout_columnSpan="2"
         android:layout_gravity="fill"
         android:visibility="gone"
@@ -172,7 +172,7 @@
         style="?android:attr/progressBarStyleLargeInverse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:indeterminate="true"
+        android:indeterminate="false"
         />
 
   </GridLayout>

@@ -6,7 +6,7 @@ import java.util.Set;
 import android.widget.ArrayAdapter;
 
 public class AdapterWrapper {
-  private ArrayAdapter<String> hostsAdapter;
+  private volatile ArrayAdapter<String> hostsAdapter;
   private Set<String> hosts=new HashSet<>();
 
   public AdapterWrapper(ArrayAdapter<String> hostsAdapter) {

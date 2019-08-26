@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.speech.RecognizerIntent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,18 +41,18 @@ public class MainActivity extends Activity {
 		back, forward, up, reload, left, down, right, options, enter, space, scanButton;
 	private Spinner hostsDropdown;
 	private AdapterWrapper adapterWrapper;
+	private Handler refreshHandler = new Handler(Looper.getMainLooper());
 
 	private class MyListener implements View.OnClickListener
 	{
 
 		@Override
 		public void onClick(View v) {
-
 			System.out.println("Keyboard: Button clicked "+v);
 			if(v.equals(scanButton)){
 //				hostsAdapter.clear();
 				progressBar.setVisibility(View.VISIBLE);
-				scanner.scan(adapterWrapper, progressBar);
+				scanner.scan(adapterWrapper, progressBar, MainActivity.this);
 			}else
 			if(v.equals(tab))
 			{

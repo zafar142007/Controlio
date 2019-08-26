@@ -19,10 +19,6 @@ public class NetworkService extends IntentService {
 
 
   private String host = "192.168.43.238";
-  private final String BROADCAST_ACTION = "com.example.controlio.BROADCAST";
-  private final String SUCCESS = "com.example.controlio.SEND_SUCCESS_STATUS";
-  private final String FAILURE = "com.example.controlio.SEND_FAILURE_STATUS";
-
   private int port = Utility.PORT;
   private StringBuffer data = null;
   private Socket soc = null;
@@ -74,7 +70,6 @@ public class NetworkService extends IntentService {
   protected void onHandleIntent(Intent workIntent) {
     // Gets data from the incoming Intent
     System.out.println("service: I have received Intent");
-    Intent localIntent;
 
     String dataString = workIntent.getStringExtra("command");
     String ip = workIntent.getStringExtra("ipaddress");
@@ -101,24 +96,9 @@ public class NetworkService extends IntentService {
     }
     try {
       write(dataString);
-      localIntent =
-          new Intent(BROADCAST_ACTION)
-              // Puts the status into the Intent
-              .putExtra("message", SUCCESS);
-
     } catch (Exception e) {
       e.printStackTrace();
-      //call
-      localIntent =
-          new Intent(BROADCAST_ACTION)
-              // Puts the status into the Intent
-              .putExtra("message", FAILURE);
-      System.out.println("Service: I have not been able to write to network. " + e);
     }
-    // Broadcasts the Intent to receivers in this app.
-    //  LocalBroadcastManager.getInstance(this).sendBroadcast(localIntent);
-
-    // Do work here, based on the contents of dataString
   }
 
   private String getClipboardContent() {

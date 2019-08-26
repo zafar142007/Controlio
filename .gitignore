@@ -2,7 +2,9 @@
 .idea
 .project
 .settings
-/*/build/*
+*.iml
+*/build/*
+Controlio/Controlio/app/build/*
 !Controlio/Controlio/app/build/intermediates/instant-run-apk/debug/app-debug.apk
 target/*
 !Controlio/ControlioServer/target/ControlioServer-1.1-executable.jar

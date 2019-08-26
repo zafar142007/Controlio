@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import android.view.View;
+import android.app.Activity;
 import android.widget.ProgressBar;
 import in.controlio.util.AdapterWrapper;
 import in.controlio.util.Utility;
@@ -26,21 +26,21 @@ public class NetworkScanner {
 
   private int port;
 
-  private ExecutorService executorService= Executors.newFixedThreadPool(1);
+  private ExecutorService executorService= Executors.newFixedThreadPool(4);
   public NetworkScanner(int port) {
     this.port = port;
   }
 
 
-  public void scan(final AdapterWrapper hostsAdapter, final ProgressBar progressBar){
+  public void scan(final AdapterWrapper hostsAdapter, final ProgressBar progressBar, final Activity activity){
     executorService.submit(new Runnable() {
       @Override
       public void run() {
         try {
-          findSockets(getInterfaceAddresses(), hostsAdapter);
-          System.out.println("scanning done");
-          progressBar.setVisibility(View.GONE);
-        } catch (SocketException e) {
+          final Set<String> hosts=findSockets(getInterfaceAddresses());
+          System.out.println("scanning done: found "+hosts.size());
+          activity.runOnUiThread(new UpdateAdapterJob(hosts, hostsAdapter, progressBar));
+        } catch (Exception e) {
           e.printStackTrace();
         }
       }
@@ -51,8 +51,7 @@ public class NetworkScanner {
     return NetworkInterface.getNetworkInterfaces();
   }
 
-  public void findSockets(Enumeration<NetworkInterface> networks,
-      AdapterWrapper adapterWrapper) {
+  public Set<String> findSockets(Enumeration<NetworkInterface> networks) {
 
     Set<String> set=new HashSet<>();
     for (NetworkInterface network : Collections.list(networks)) {
@@ -69,20 +68,19 @@ public class NetworkScanner {
               try {
                 RemoteMachine remote;
                 if ((remote = checkHost(address)) != null) {
-
                   remote.getSocket().shutdownOutput();
                   remote.getSocket().shutdownInput();
                   remote.getSocket().close();
-                  adapterWrapper.addHost(remote.getHostname());
-
+                  set.add(remote.getHostname());
                 }
-              } catch (IOException e) {
+              } catch (Exception e) {
                 e.printStackTrace();
               }
           }
         }
       }
     }
+    return set;
   }
 
 
@@ -154,6 +152,7 @@ public class NetworkScanner {
         return new RemoteMachine(soc, h);
       }catch(Exception e){
         System.out.println("could not connect to "+host);
+        soc.close();
         return null;
       }
     } else{
