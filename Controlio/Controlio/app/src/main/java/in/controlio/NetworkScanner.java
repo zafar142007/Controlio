@@ -18,7 +18,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import in.controlio.util.AdapterWrapper;
 import in.controlio.util.Utility;
 
@@ -38,7 +41,7 @@ public class NetworkScanner {
       public void run() {
         try {
           final Set<String> hosts=findSockets(getInterfaceAddresses());
-          System.out.println("scanning done: found "+hosts.size());
+          System.out.println("scanning done");
           activity.runOnUiThread(new UpdateAdapterJob(hosts, hostsAdapter, progressBar));
         } catch (Exception e) {
           e.printStackTrace();
