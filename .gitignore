@@ -5,6 +5,7 @@
 *.iml
 */build/*
 Controlio/Controlio/app/build/*
+!Controlio/Controlio/app/build/outputs/apk/app-debug.apk
 !Controlio/Controlio/app/build/intermediates/instant-run-apk/debug/app-debug.apk
 target/*
 !Controlio/ControlioServer/target/ControlioServer-1.1-executable.jar
