@@ -1,20 +1,20 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <item
-      android:id="@+id/hostIPTextbox"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_margin="16dp"
-      android:title="@string/hostIP"
-      android:layout_columnSpan="2"
-      android:textColorHint="#000000"
-      android:layout_gravity="fill"
-      />
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+  <item
+    android:id="@+id/hostIPTextbox"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:layout_columnSpan="2"
+    android:layout_gravity="fill"
+    android:textColorHint="#000000"
+    android:title="@string/hostIP"
+    />
+  <item
+    android:id="@+id/action_settings"
+    android:orderInCategory="100"
+    android:showAsAction="never"
+    android:title="@string/action_settings"/>
 
 </menu>

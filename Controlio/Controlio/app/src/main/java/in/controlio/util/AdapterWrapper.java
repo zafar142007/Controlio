@@ -6,18 +6,20 @@ import java.util.Set;
 import android.widget.ArrayAdapter;
 
 public class AdapterWrapper {
+
   private volatile ArrayAdapter<String> hostsAdapter;
-  private Set<String> hosts=new HashSet<>();
+  private Set<String> hosts = new HashSet<>();
 
   public AdapterWrapper(ArrayAdapter<String> hostsAdapter) {
     this.hostsAdapter = hostsAdapter;
   }
 
-  public int size(){
+  public int size() {
     return hosts.size();
   }
-  public void addHost(String host){
-    if(!hosts.contains(host)){
+
+  public void addHost(String host) {
+    if (!hosts.contains(host)) {
       hosts.add(host);
       hostsAdapter.add(host);
     }

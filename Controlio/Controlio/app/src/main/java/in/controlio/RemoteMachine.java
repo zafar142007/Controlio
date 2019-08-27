@@ -3,6 +3,7 @@ package in.controlio;
 import java.net.Socket;
 
 public class RemoteMachine {
+
   private Socket socket;
   private String hostname;
 
