@@ -7,10 +7,18 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.speech.RecognizerIntent;
+import android.text.method.LinkMovementMethod;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -18,9 +26,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 import in.controlio.util.AdapterWrapper;
 import in.controlio.util.Utility;
@@ -165,6 +176,68 @@ public class MainActivity extends Activity {
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.main, menu);
     hostIPTextbox = menu.findItem(R.id.hostIPTextbox);
+    menu.findItem(R.id.about).setOnMenuItemClickListener((item)->{
+      LayoutInflater inflater = (LayoutInflater)
+          getSystemService(LAYOUT_INFLATER_SERVICE);
+      View popupView = inflater.inflate(R.layout.popup_layout, null);
+
+      // create the popup window
+      int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+      int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+      boolean focusable = true; // lets taps outside the popup also dismiss it
+      final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+      TextView aboutText=popupView.findViewById(R.id.aboutText);
+      aboutText.setMovementMethod(LinkMovementMethod.getInstance());
+      // show the popup window
+      // which view you pass in doesn't matter, it is only used for the window token
+      popupWindow.showAtLocation(popupView, Gravity.CENTER, 0, 0);
+      return true;
+    });
+    menu.findItem(R.id.contact).setOnMenuItemClickListener((item)->{
+      Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+          "mailto", Utility.email, null));
+      intent.putExtra(Intent.EXTRA_SUBJECT, "[Feedback] App Controlio");
+      StringBuilder stringBuilder=new StringBuilder();
+      DisplayMetrics dm = new DisplayMetrics();
+      MainActivity.this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+      double widthInches =dm.widthPixels / dm.xdpi;
+      double heightInches =dm.heightPixels / dm.ydpi;
+      stringBuilder
+          .append("Manufacturer: ")
+          .append( Build.MANUFACTURER)
+          .append(", Brand: ")
+          .append( Build.BRAND)
+          .append(", Model: ")
+          .append( Build.MODEL)
+          .append(", Board: ")
+          .append( Build.BOARD)
+          .append(", Hardware: ")
+          .append( Build.HARDWARE)
+          .append(", Device: ")
+          .append( Build.DEVICE)
+          .append(", Manufacturer: ")
+          .append( Build.MANUFACTURER)
+          .append(", Version: ")
+          .append( Build.VERSION.RELEASE)
+          .append(", SDK: ")
+          .append( Build.VERSION.SDK_INT)
+          .append(", Width in inches: ")
+          .append(widthInches)
+          .append(", Height in inches: ")
+          .append( heightInches)
+          .append('\n')
+      .append("-----------------------------------------------------------")
+      .append("Please type below this line")
+          .append('\n')
+      .append("-----------------------------------------------------------");
+
+      intent.putExtra(Intent.EXTRA_TEXT, stringBuilder.toString());
+      startActivity(Intent.createChooser(intent, "Choose an Email client"));
+      return true;
+    });
+
+
     return true;
   }
 

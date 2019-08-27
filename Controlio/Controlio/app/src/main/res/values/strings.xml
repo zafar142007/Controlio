@@ -8,4 +8,9 @@
   <string name="sendHi">Test</string>
   <string name="copy">Copy to computer clipboard</string>
   <string name="scanButton">Scan network</string>
+  <string name="About">About</string>
+  <string name="Contact">Contact</string>
+  <string name="aboutText">This app communicates with a software running on your desktop computer to issue commands to it by speech or touch. Download the desktop software <a href="https://github.com/zafar142007/Controlio/blob/master/Controlio/ControlioServer/target/ControlioServer-1.2-executable.jar">here</a>.
+   \n After you have started this software on your desktop (your desktop should be on the same network as your phone), scan your network on your phone by clicking the \'scan network\' button in the app. After a while you will see your desktop\'s IP in the app. After that you can control your desktop by your phone.
+</string>
 </resources>

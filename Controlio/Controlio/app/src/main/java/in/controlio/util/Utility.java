@@ -10,4 +10,5 @@ public interface Utility {
   int REACHABILTY_TIMEOUT_MS = 150;
   String SEARCHING_MESSAGE = "Searching...";
   int SO_TIMEOUT_MS = 200;
+  String email="eagersphinx@gmail.com";
 }
