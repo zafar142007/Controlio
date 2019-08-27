@@ -8,8 +8,6 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.speech.RecognizerIntent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,7 +42,6 @@ public class MainActivity extends Activity {
       back, forward, up, reload, left, down, right, options, enter, space, scanButton;
   private Spinner hostsDropdown;
   private AdapterWrapper adapterWrapper;
-  private Handler refreshHandler = new Handler(Looper.getMainLooper());
   private MyListener myListener = new MyListener();
 
   public void onCreate(Bundle savedInstanceState) {
