@@ -175,7 +175,8 @@ public class MainActivity extends Activity {
     Intent mServiceIntent = new Intent(MainActivity.this.getApplicationContext(),
         NetworkService.class);
     if (hostIPTextbox != null && hostIPTextbox.getTitle() != null && !hostIPTextbox.getTitle()
-        .toString().isEmpty()) {
+        .toString().isEmpty() && !hostIPTextbox.getTitle()
+        .toString().equals("Not connected")) {
       String ip = hostIPTextbox.getTitle().toString();
       mServiceIntent.putExtra("ipaddress", ip);
       mServiceIntent.putExtra(Utility.TYPE_MODE, false);
@@ -217,7 +218,7 @@ public class MainActivity extends Activity {
           Intent mServiceIntent = new Intent(MainActivity.this.getApplicationContext(),
               NetworkService.class);
           if (hostIPTextbox != null && hostIPTextbox.getTitle() != null && !hostIPTextbox.getTitle()
-              .toString().isEmpty()) {
+              .toString().isEmpty() && !hostIPTextbox.getTitle().toString().equals("Not connected")) {
             String ip = hostIPTextbox.getTitle().toString();
             mServiceIntent.putExtra("ipaddress", ip);
             mServiceIntent.putExtra(Utility.TYPE_MODE, typingMode.isChecked());
