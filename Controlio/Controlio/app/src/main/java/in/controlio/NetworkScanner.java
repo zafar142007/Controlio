@@ -11,17 +11,13 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.HashSet;
+
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import android.app.Activity;
-import android.os.Handler;
-import android.os.Looper;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 import in.controlio.util.AdapterWrapper;
 import in.controlio.util.Utility;
 
@@ -40,9 +36,9 @@ public class NetworkScanner {
       @Override
       public void run() {
         try {
-          final Set<String> hosts=findSockets(getInterfaceAddresses());
+          findSockets(getInterfaceAddresses(), hostsAdapter, activity);
           System.out.println("scanning done");
-          activity.runOnUiThread(new UpdateAdapterJob(hosts, hostsAdapter, progressBar));
+          activity.runOnUiThread(new UpdateAdapterJob(hostsAdapter.size(), progressBar));
         } catch (Exception e) {
           e.printStackTrace();
         }
@@ -54,9 +50,8 @@ public class NetworkScanner {
     return NetworkInterface.getNetworkInterfaces();
   }
 
-  public Set<String> findSockets(Enumeration<NetworkInterface> networks) {
+  public void findSockets(Enumeration<NetworkInterface> networks, AdapterWrapper adapterWrapper, Activity activity) {
 
-    Set<String> set=new HashSet<>();
     for (NetworkInterface network : Collections.list(networks)) {
       List<InterfaceAddress> interfaces= network.getInterfaceAddresses();
       ArrayList<InetAddress> inetAddresses = Collections.list(network.getInetAddresses());
@@ -74,7 +69,7 @@ public class NetworkScanner {
                   remote.getSocket().shutdownOutput();
                   remote.getSocket().shutdownInput();
                   remote.getSocket().close();
-                  set.add(remote.getHostname());
+                  activity.runOnUiThread(()->adapterWrapper.addHost(remote.getHostname()));
                 }
               } catch (Exception e) {
                 e.printStackTrace();
@@ -83,7 +78,6 @@ public class NetworkScanner {
         }
       }
     }
-    return set;
   }
 
 

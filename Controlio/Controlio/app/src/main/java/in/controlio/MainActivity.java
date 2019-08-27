@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
 			System.out.println("Keyboard: Button clicked "+v);
 			if(v.equals(scanButton)){
 				Toast.makeText(MainActivity.this,
-						"Scanning your internal network for connectable devices", Toast.LENGTH_LONG).show();
+						"Scanning your internal network for connectable devices. This may take a few minutes.", Toast.LENGTH_LONG).show();
 				progressBar.setVisibility(View.VISIBLE);
 				scanner.scan(adapterWrapper, progressBar, MainActivity.this);
 			}else

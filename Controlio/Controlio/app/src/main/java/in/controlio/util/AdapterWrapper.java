@@ -13,6 +13,9 @@ public class AdapterWrapper {
     this.hostsAdapter = hostsAdapter;
   }
 
+  public int size(){
+    return hosts.size();
+  }
   public void addHost(String host){
     if(!hosts.contains(host)){
       hosts.add(host);

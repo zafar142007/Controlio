@@ -11,23 +11,18 @@ import in.controlio.util.AdapterWrapper;
 public class UpdateAdapterJob implements Runnable{
 
   private final ProgressBar progressBar;
-  Set<String> hosts=new HashSet<>();
-  AdapterWrapper adapter;
+  private Integer numberOfHosts;
 
-  public UpdateAdapterJob(Set<String> hosts, AdapterWrapper hostsAdapter, ProgressBar progressBar) {
-    this.hosts=hosts;
-    this.adapter=hostsAdapter;
+  public UpdateAdapterJob(Integer numberOfHosts, ProgressBar progressBar) {
     this.progressBar=progressBar;
+    this.numberOfHosts=numberOfHosts;
   }
 
   @Override
   public void run() {
     try {
-      for (String host : hosts) {
-        adapter.addHost(host);
-      }
       Toast.makeText(progressBar.getContext(),
-          "Scanning done -- found "+hosts.size()+" connectable devices on your internal network",
+          "Scanning done -- found "+numberOfHosts+" connectable devices on your internal network",
           Toast.LENGTH_LONG).show();
 
       progressBar.setVisibility(View.GONE);
