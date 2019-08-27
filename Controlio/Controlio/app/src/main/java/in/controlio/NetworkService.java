@@ -2,10 +2,7 @@ package in.controlio;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.nio.ByteBuffer;
-import java.nio.channels.SocketChannel;
 
 import android.app.IntentService;
 import android.content.ClipData;
@@ -21,8 +18,6 @@ public class NetworkService extends IntentService {
   private String host = "192.168.43.238";
   private int port = Utility.PORT;
   private StringBuffer data = null;
-  private Socket soc = null;
-  PrintWriter pw = null;
 
   public String getHost() {
     return host;
@@ -44,32 +39,22 @@ public class NetworkService extends IntentService {
     super("network");
     System.out.println("Service: I have been instantiated");
     //    	try{
-    //    		soc=new Socket(host, port);
+    //    		MainActivity.socket=new MainActivity.socketket(host, port);
     //    	}catch(Exception e)
     //    	{
     //    		e.printStackTrace();
-    //    		System.out.println("Service: I have not been able to open socket in constructor." + e);
+    //    		System.out.println("Service: I have not been able to open MainActivity.socketket in constructor." + e);
     //    	}
   }
 
   public void onDestroy() {
-
-    try {
-//			ch.close();
-      if (soc != null) {
-        soc.close();
-      }
-      System.out.println("Socket: I am being closed");
-    } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("Socket: I could not be closed. " + e);
-    }
 
   }
 
   protected void onHandleIntent(Intent workIntent) {
     // Gets data from the incoming Intent
     System.out.println("service: I have received Intent");
+
 
     String dataString = workIntent.getStringExtra("command");
     String ip = workIntent.getStringExtra("ipaddress");
@@ -127,22 +112,22 @@ public class NetworkService extends IntentService {
 
   public void write(String message) throws Exception {
     try {
-      if (soc == null || soc.isClosed() || !soc.isConnected() || !soc.isBound()) {
-        if (soc != null) {
-          soc.close();
+      if (MainActivity.socket == null || MainActivity.socket.isClosed() || !MainActivity.socket.isConnected() || !MainActivity.socket.isBound()) {
+        if (MainActivity.socket != null) {
+          MainActivity.socket.close();
         }
-        soc = new Socket(host, port);
-        soc.setKeepAlive(true);
-        pw = new PrintWriter(new OutputStreamWriter(soc.getOutputStream()), true);
-        System.out.println("Service: I have opened a new Socket");
+        MainActivity.socket = new Socket(host, port);
+        MainActivity.socket.setKeepAlive(true);
+        MainActivity.pw = new PrintWriter(new OutputStreamWriter(MainActivity.socket.getOutputStream()), true);
+        System.out.println("Service: I have opened a new socket");
       }
-      if (pw == null || pw.checkError()) {
-        if (pw != null) {
-          pw.close();
+      if (MainActivity.pw == null || MainActivity.pw.checkError()) {
+        if (MainActivity.pw != null) {
+          MainActivity.pw.close();
         }
-        pw = new PrintWriter(new OutputStreamWriter(soc.getOutputStream()), true);
+        MainActivity.pw = new PrintWriter(new OutputStreamWriter(MainActivity.socket.getOutputStream()), true);
       }
-      pw.println(message);
+      MainActivity.pw.println(message);
       System.out.println("Service:I have written "+message+" data to network");
     } catch (Exception e) {
       e.printStackTrace();

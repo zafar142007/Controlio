@@ -1,5 +1,7 @@
 package in.controlio;
 
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.ArrayList;
 
 
@@ -42,6 +44,9 @@ public class MainActivity extends Activity {
 	private Spinner hostsDropdown;
 	private AdapterWrapper adapterWrapper;
 	private Handler refreshHandler = new Handler(Looper.getMainLooper());
+	public static Socket socket=null;
+	public static PrintWriter pw = null;
+
 
 	private class MyListener implements View.OnClickListener
 	{
@@ -293,7 +298,7 @@ public class MainActivity extends Activity {
 				String port=getPort();
 				System.out.println("Activity: Port being embedded is "+port);
 				mServiceIntent.putExtra("port", port);
-				
+
 				System.out.println("TextBox: ip is "+ip);
 				mServiceIntent.putExtra("command", text.get(0));
 				System.out.println("Main: I am starting service");
