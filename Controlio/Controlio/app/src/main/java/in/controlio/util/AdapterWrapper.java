@@ -15,7 +15,11 @@ public class AdapterWrapper {
   }
 
   public int size() {
-    return hosts.size();
+    int size = hosts.size();
+    if (hosts.contains("Not connected")){
+      size--;
+    }
+    return size;
   }
 
   public void addHost(String host, boolean clearExisting) {
