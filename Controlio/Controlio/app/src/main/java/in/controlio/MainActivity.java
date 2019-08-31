@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.speech.RecognizerIntent;
 import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
@@ -18,7 +17,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -54,11 +52,13 @@ public class MainActivity extends Activity {
   private Spinner hostsDropdown;
   private AdapterWrapper adapterWrapper;
   private MyListener myListener = new MyListener();
+  private String defaultMessage="Not connected";
 
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     adapterWrapper = new AdapterWrapper(new ArrayAdapter<String>(
         this, android.R.layout.simple_spinner_dropdown_item));
+    adapterWrapper.addHost(defaultMessage, true);
     setContentView(R.layout.activity_main);
     progressBar = findViewById(R.id.progressBar);
     hostsDropdown = findViewById(R.id.hostsDropdown);
@@ -246,7 +246,7 @@ public class MainActivity extends Activity {
         NetworkService.class);
     if (hostIPTextbox != null && hostIPTextbox.getTitle() != null && !hostIPTextbox.getTitle()
         .toString().isEmpty() && !hostIPTextbox.getTitle()
-        .toString().equals("Not connected")) {
+        .toString().equals(defaultMessage)) {
       String ip = hostIPTextbox.getTitle().toString();
       mServiceIntent.putExtra("ipaddress", ip);
       mServiceIntent.putExtra(Utility.TYPE_MODE, false);
@@ -288,7 +288,7 @@ public class MainActivity extends Activity {
           Intent mServiceIntent = new Intent(MainActivity.this.getApplicationContext(),
               NetworkService.class);
           if (hostIPTextbox != null && hostIPTextbox.getTitle() != null && !hostIPTextbox.getTitle()
-              .toString().isEmpty() && !hostIPTextbox.getTitle().toString().equals("Not connected")) {
+              .toString().isEmpty() && !hostIPTextbox.getTitle().toString().equals(defaultMessage)) {
             String ip = hostIPTextbox.getTitle().toString();
             mServiceIntent.putExtra("ipaddress", ip);
             mServiceIntent.putExtra(Utility.TYPE_MODE, typingMode.isChecked());

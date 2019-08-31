@@ -18,7 +18,11 @@ public class AdapterWrapper {
     return hosts.size();
   }
 
-  public void addHost(String host) {
+  public void addHost(String host, boolean clearExisting) {
+    if(clearExisting) {
+      hosts.clear();
+      hostsAdapter.clear();
+    }
     if (!hosts.contains(host)) {
       hosts.add(host);
       hostsAdapter.add(host);

@@ -3,7 +3,7 @@
 
   <item
     android:id="@+id/hostIPTextbox"
-    android:layout_width="fill_parent"
+    android:layout_width="20dp"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
     android:layout_columnSpan="2"

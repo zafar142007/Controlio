@@ -17,6 +17,7 @@ import java.util.concurrent.Executors;
 
 import android.app.Activity;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import in.controlio.util.AdapterWrapper;
 import in.controlio.util.Utility;
 
@@ -63,7 +64,11 @@ public class NetworkScanner {
           int mask = interfaceAddress.getNetworkPrefixLength();
 
           List<Byte[]> addresses = getUsableAddresses(inetAddress.getAddress(), mask);
-
+          if(addresses.size()>0) {
+            activity.runOnUiThread(() -> Toast.makeText(activity.getBaseContext(),
+                "Scanning " + addresses.size() + " devices on your network. This will take about "
+                    + Utility.SCAN_TIMEOUT_MS / 1000 + " seconds", Toast.LENGTH_LONG).show());
+          }
           for (Byte[] address : addresses) {
             try {
               RemoteMachine remote;
@@ -71,7 +76,7 @@ public class NetworkScanner {
                 remote.getSocket().shutdownOutput();
                 remote.getSocket().shutdownInput();
                 remote.getSocket().close();
-                activity.runOnUiThread(() -> adapterWrapper.addHost(remote.getHostname()));
+                activity.runOnUiThread(() -> adapterWrapper.addHost(remote.getHostname(), false));
               }
             } catch (Exception e) {
               e.printStackTrace();
@@ -89,7 +94,7 @@ public class NetworkScanner {
       byte start = 0, end = 0;
 
       start = (byte) (address[(int) ((mask - 1) / 8)] & getMaskByte(mask % 8));
-      end = (byte) (start + Math.pow(2, 8 - (mask & 8)) - 1);
+      end = (byte) (start + Math.pow(2, 8 - (mask % 8)) - 1);
       addresses = generateByteAddresses(address, start, end, (int) ((mask - 1) / 8));
 
     }
@@ -104,7 +109,7 @@ public class NetworkScanner {
     for (int j = 0; j < subnetMaskByte; j++) {
       addr[j] = address[j];
     }
-    for (byte j = start; j <= end; j++) {
+    for (byte j = start; j <= end && j>=start; j++) {
       addr[subnetMaskByte] = j;
       generateAllCombinations(addresses, addr, subnetMaskByte + 1);
     }
@@ -118,7 +123,12 @@ public class NetworkScanner {
     } else {
       int k = 0;
       for (byte b = -128; k < 256; b++, k++) {
-        Byte[] address = addr.clone();
+        Byte[] address = new Byte[4];
+        int i=0;
+        for(Byte byt: addr){
+          address[i]=addr[i];
+          i++;
+        }
         address[bytePosition] = b;
         generateAllCombinations(addresses, address, bytePosition + 1);
       }
@@ -143,6 +153,7 @@ public class NetworkScanner {
     }
     InetAddress host = InetAddress.getByAddress(add);
     String h = host.getHostName();
+    System.out.println("trying "+h);
     if (host.isReachable(Utility.REACHABILTY_TIMEOUT_MS)) {
       Socket soc = new Socket();
       try {
