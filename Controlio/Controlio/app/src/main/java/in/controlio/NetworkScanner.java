@@ -67,7 +67,7 @@ public class NetworkScanner {
           if(addresses.size()>0) {
             activity.runOnUiThread(() -> Toast.makeText(activity.getBaseContext(),
                 "Scanning " + addresses.size() + " devices on your network. This will take about "
-                    + Utility.SCAN_TIMEOUT_MS / 1000 + " seconds", Toast.LENGTH_LONG).show());
+                    + addresses.size()* Utility.SCAN_TIMEOUT_MS / 1000 + " seconds", Toast.LENGTH_LONG).show());
           }
           for (Byte[] address : addresses) {
             try {
@@ -93,9 +93,9 @@ public class NetworkScanner {
     if (address.length == 4 && mask < 32) {
       byte start = 0, end = 0;
 
-      start = (byte) (address[(int) ((mask - 1) / 8)] & getMaskByte(mask % 8));
+      start = (byte) (address[(int) ((mask) / 8)] & getMaskByte(mask % 8));
       end = (byte) (start + Math.pow(2, 8 - (mask % 8)) - 1);
-      addresses = generateByteAddresses(address, start, end, (int) ((mask - 1) / 8));
+      addresses = generateByteAddresses(address, start, end, (int) ((mask) / 8));
 
     }
     return addresses;
@@ -109,9 +109,13 @@ public class NetworkScanner {
     for (int j = 0; j < subnetMaskByte; j++) {
       addr[j] = address[j];
     }
-    for (byte j = start; j <= end && j>=start; j++) {
-      addr[subnetMaskByte] = j;
-      generateAllCombinations(addresses, addr, subnetMaskByte + 1);
+    for (byte j = start; true; j++) {
+      Byte[] addres= addr.clone();
+      addres[subnetMaskByte] = j;
+      generateAllCombinations(addresses, addres, subnetMaskByte + 1);
+      if(j==end) {
+        break;
+      }
     }
     return addresses;
   }
@@ -137,9 +141,6 @@ public class NetworkScanner {
 
   private byte getMaskByte(int m) {
     byte b = 0;
-    if (m == 0) {
-      m = 8;
-    }
     for (int i = 7; i > (7 - m); i--) {
       b += (byte) Math.pow(2, i);
     }
